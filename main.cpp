@@ -17,8 +17,8 @@ int main()
 			manager.is_user_clicking();
 			manager.check_action(window);
 		}
+	
 
 	
-	_getch();
 	return 0;
 }

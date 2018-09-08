@@ -20,6 +20,8 @@ public:
 	void is_user_clicking();
 	void get_action();
 	void check_action(WindoW & window);
+
+
 	Manager();
 	~Manager();
 };

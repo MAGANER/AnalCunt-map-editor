@@ -48,6 +48,7 @@ void Manager::check_action(WindoW & window)
 	action = "-1";
 }
 
+
 Manager::~Manager()
 {
 }
