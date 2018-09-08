@@ -7,8 +7,6 @@
    5.close window
 */
 #pragma once
-#include<iostream>
-#include<string>
 #include"WindoW.h"
 
 using namespace std;
