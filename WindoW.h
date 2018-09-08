@@ -7,13 +7,15 @@ private:
 	RenderWindow win;
 	VideoMode size;
 	string title;
-	Event event;
 public:
+	
 	bool is_open();
 	void check_event();
 
 	void create();
 	void close();
+
+	void draw();
 
 	WindoW(int width, int height, string title);
 	~WindoW();
