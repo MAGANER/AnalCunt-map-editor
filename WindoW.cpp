@@ -1,6 +1,9 @@
 #include "WindoW.h"
 
-
+void WindoW::clear()
+{
+	win.clear();
+}
 void WindoW::draw()
 {
 	//draw nothing

@@ -14,6 +14,7 @@ public:
 
 	void create();
 	void close();
+	void clear();
 
 	void draw();
 

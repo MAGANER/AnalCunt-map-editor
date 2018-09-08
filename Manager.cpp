@@ -10,8 +10,9 @@ Manager::Manager()
 void Manager::is_user_clicking()
 {
 	bool escape = !Keyboard::isKeyPressed(Keyboard::Escape);
-	
-	bool user_doesnt_click = escape;
+	bool z = !Keyboard::isKeyPressed(Keyboard::Z);
+
+	bool user_doesnt_click = escape && z;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -25,6 +26,10 @@ void Manager::get_action()
 		{
 			action = "close";
 		}
+		if (Keyboard::isKeyPressed(Keyboard::Z))
+		{
+			action = "clear";
+		}
 
 		clicked = true;
 	}
@@ -34,6 +39,10 @@ void Manager::check_action(WindoW & window)
 	if (action == "close")
 	{
 		window.close();
+	}
+	if (action == "clear")
+	{
+		window.clear();
 	}
 
 	action = "-1";
