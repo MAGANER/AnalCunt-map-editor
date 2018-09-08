@@ -14,6 +14,7 @@ int main()
 			window.check_event();
 	        
 			manager.get_action();
+			manager.is_user_clicking();
 			manager.check_action(window);
 		}
 
