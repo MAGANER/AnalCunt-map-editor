@@ -7,6 +7,8 @@ using json = nlohmann::json;
 class Entity: public Object
 {
 private:
+	int id; // number of object
+	int type;
 	json entity;
 public:
 	void set_data();
