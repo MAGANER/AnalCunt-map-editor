@@ -9,6 +9,8 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include"WindoW.h"
+
 using namespace std;
 
 class Manager
@@ -17,7 +19,7 @@ private:
 	string action;
 public:
 	void get_action();
-	void check_action();
+	void check_action(WindoW & window);
 	Manager();
 	~Manager();
 };

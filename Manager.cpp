@@ -4,12 +4,14 @@
 
 Manager::Manager()
 {
+
 }
 void Manager::get_action()
 {
+	cout << ">>";
 	cin >> action;
 }
-void Manager::check_action()
+void Manager::check_action(WindoW & window)
 {
 	// object manipulating commands
 	if (action == "add_object" || action == "ao")
@@ -33,6 +35,10 @@ void Manager::check_action()
 	if (action == "close_window" || action == "cw")
 	{
 
+	}
+	if (action == "create_window" || action == "start_window" || action == "sw")
+	{
+		window.create();
 	}
 	
 
