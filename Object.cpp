@@ -1,30 +1,28 @@
-#include "GameObject.h"
+#include "Object.h"
 
-float GameObject::get_x()
+float Object::get_x()
 {
 	Vector2f pos = gobject_spr.getPosition();
 	return pos.x;
 }
-float GameObject::get_y()
+float Object::get_y()
 {
 	Vector2f pos = gobject_spr.getPosition();
 	return pos.y;
 }
-void GameObject::set_pos(float x, float y)
+void Object::set_pos(float x, float y)
 {
 	gobject_spr.setPosition(x, y);
 }
-Sprite GameObject::returnSprite()
+Sprite Object::returnSprite()
 {
 	return gobject_spr;
 }
-GameObject::GameObject()
+Object::Object()
 {
 
 }
 
-
-
-GameObject::~GameObject()
+Object::~Object()
 {
 }

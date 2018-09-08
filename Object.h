@@ -2,7 +2,7 @@
 #pragma once
 #include"stdafx.h"
 
-class GameObject
+class Object
 {
 protected:
     float x_pos, y_pos;
@@ -11,12 +11,14 @@ protected:
 	Image gobject_img;
 	Texture gobject_textr;
 	Sprite gobject_spr;
+
+
 public:
 	float get_x();
 	float get_y();
 	void set_pos(float x, float y);
 	Sprite returnSprite();
-	GameObject();
-	virtual ~GameObject();
+	Object();
+	virtual ~Object();
 };
 
