@@ -34,7 +34,7 @@ void Manager::check_action(WindoW & window)
 	// programm manipulating commands
 	if (action == "close_window" || action == "cw")
 	{
-
+		window.close();
 	}
 	if (action == "create_window" || action == "start_window" || action == "sw")
 	{

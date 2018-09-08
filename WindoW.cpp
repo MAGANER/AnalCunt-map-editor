@@ -1,6 +1,9 @@
 #include "WindoW.h"
 
-
+void WindoW::close()
+{
+	win.close();
+}
 void WindoW::create()
 {
 	win.create(size, title);

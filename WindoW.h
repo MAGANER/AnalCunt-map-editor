@@ -11,7 +11,10 @@ private:
 public:
 	bool is_open();
 	void check_event();
+
 	void create();
+	void close();
+
 	WindoW(int width, int height, string title);
 	~WindoW();
 };
