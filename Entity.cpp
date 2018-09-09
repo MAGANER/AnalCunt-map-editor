@@ -1,5 +1,10 @@
 #include "Entity.h"
 
+
+int Entity::get_id()
+{
+	return id;
+}
 void Entity::set_id(int id)
 {
 	this->id = id;

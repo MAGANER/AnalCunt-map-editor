@@ -11,6 +11,7 @@ private:
 	string type;
 	json entity;
 public:
+	int get_id();
 	void set_id(int id);
 	void set_type(string type);
 	void set_data();
