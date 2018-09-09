@@ -22,9 +22,9 @@ int main()
 			manager.is_user_clicking();
 			manager.check_action(window, object_counter, objects, usabling_object_id);
             
-			window.clear();
+			
 			window.draw(objects);
-			window.display();
+
 		}
 	
 
