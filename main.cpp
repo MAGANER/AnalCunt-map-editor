@@ -16,6 +16,11 @@ int main()
 			manager.get_action();
 			manager.is_user_clicking();
 			manager.check_action(window);
+
+			window.clear();
+
+
+			window.display();
 		}
 	
 

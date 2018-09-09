@@ -1,8 +1,20 @@
 #include "WindoW.h"
 
+
+void WindoW::resize(int width, int height)
+{
+	Vector2u win_size;
+	win_size.x = width;
+	win_size.y = height;
+	win.setSize(win_size);
+}
 void WindoW::clear()
 {
 	win.clear();
+}
+void WindoW::display()
+{
+	win.display();
 }
 void WindoW::draw()
 {
@@ -21,6 +33,7 @@ void WindoW::create()
 	win.setVisible(1);
 	win.create(size, title);
 }
+
 bool WindoW::is_open()
 {
 	if (win.isOpen())
@@ -42,6 +55,7 @@ void WindoW::check_event()
 		}
 	}
 }
+
 WindoW::WindoW(int width, int height, string title)
 {
 	size.height = height;

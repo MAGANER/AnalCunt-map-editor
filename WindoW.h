@@ -15,6 +15,8 @@ public:
 	void create();
 	void close();
 	void clear();
+	void display();
+	void resize(int width, int height);
 
 	void draw();
 
