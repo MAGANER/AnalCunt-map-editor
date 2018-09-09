@@ -11,8 +11,7 @@ int main()
 	WindoW window(400, 600, "AnalCunt map editor");
 	Manager manager;
 	vector<Entity *> objects;
-	Entity object;
-	object.set_image("s.png");
+
 
 		while (window.is_open())
 		{
