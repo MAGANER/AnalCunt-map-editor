@@ -15,8 +15,13 @@ void Manager::is_user_clicking()
 	bool num1 = !Keyboard::isKeyPressed(Keyboard::Num1);
 	bool num2 = !Keyboard::isKeyPressed(Keyboard::Num2);
 	bool num3 = !Keyboard::isKeyPressed(Keyboard::Num3);
+	bool up = !Keyboard::isKeyPressed(Keyboard::Up);
+	bool down = !Keyboard::isKeyPressed(Keyboard::Down);
+	bool left = !Keyboard::isKeyPressed(Keyboard::Left);
+	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
 
-	bool user_doesnt_click = escape && z && x && num1 && num2 && num3;
+	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
+		&& up && down && left && right;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -52,6 +57,24 @@ void Manager::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::Num3))
 		{
 			action = "choose object to manipulate";
+		}
+
+		// TODO:object moving
+		if (Keyboard::isKeyPressed(Keyboard::Up))
+		{
+			action = "move up";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Down))
+		{
+			action = "move down";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Left))
+		{
+			action = "move left";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Right))
+		{
+			action = "move right";
 		}
 		clicked = true;
 	}
@@ -92,6 +115,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		object->set_image(path);
 		object->set_type(type);
 		object->set_id(object_counter);
+		usabling_object_id = object_counter;
 
 		objects.push_back(object);
 
@@ -139,9 +163,78 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	if (action == "choose object to manipulate")
 	{
 		int id;
-		cout << "enter object id which you want to manipulate";
+		cout << "enter object id which you want to manipulate:";
 		cin >> id;
 		usabling_object_id = id;
+	}
+	if (action == "move up")
+	{
+		int object_number;
+		for (int i = 0; i < objects.size(); ++i)
+		{
+			if (objects[i]->get_id() == usabling_object_id)
+			{
+				object_number = i;
+				break;
+			}
+		}
+
+		float old_x_pos = objects[object_number]->get_x();
+		float old_y_pos = objects[object_number]->get_y();
+
+		objects[object_number]->set_pos(old_x_pos, old_y_pos - 32);
+	}
+	if (action == "move down")
+	{
+		int object_number;
+		for (int i = 0; i < objects.size(); ++i)
+		{
+			if (objects[i]->get_id() == usabling_object_id)
+			{
+				object_number = i;
+				break;
+			}
+		}
+
+		float old_x_pos = objects[object_number]->get_x();
+		float old_y_pos = objects[object_number]->get_y();
+
+		objects[object_number]->set_pos(old_x_pos, old_y_pos + 32);
+
+	}
+	if (action == "move left")
+	{
+		int object_number;
+		for (int i = 0; i < objects.size(); ++i)
+		{
+			if (objects[i]->get_id() == usabling_object_id)
+			{
+				object_number = i;
+				break;
+			}
+		}
+
+		float old_x_pos = objects[object_number]->get_x();
+		float old_y_pos = objects[object_number]->get_y();
+
+		objects[object_number]->set_pos(old_x_pos - 32, old_y_pos);
+	}
+	if (action == "move right")
+	{
+		int object_number;
+		for (int i = 0; i < objects.size(); ++i)
+		{
+			if (objects[i]->get_id() == usabling_object_id)
+			{
+				object_number = i;
+				break;
+			}
+		}
+
+		float old_x_pos = objects[object_number]->get_x();
+		float old_y_pos = objects[object_number]->get_y();
+
+		objects[object_number]->set_pos(old_x_pos + 32, old_y_pos);
 	}
 	action = "-1";
 }

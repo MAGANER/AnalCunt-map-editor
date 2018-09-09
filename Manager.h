@@ -15,6 +15,7 @@ using namespace std;
 class Manager
 {
 private:
+	int moving_length;
 	bool clicked;
 	string action;
 public:
