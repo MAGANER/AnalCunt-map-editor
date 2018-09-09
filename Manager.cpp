@@ -14,8 +14,9 @@ void Manager::is_user_clicking()
 	bool x = !Keyboard::isKeyPressed(Keyboard::X);
 	bool num1 = !Keyboard::isKeyPressed(Keyboard::Num1);
 	bool num2 = !Keyboard::isKeyPressed(Keyboard::Num2);
+	bool num3 = !Keyboard::isKeyPressed(Keyboard::Num3);
 
-	bool user_doesnt_click = escape && z && x && num1 && num2;
+	bool user_doesnt_click = escape && z && x && num1 && num2 && num3;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -48,11 +49,14 @@ void Manager::get_action()
 		{
 			action = "reset object settings";
 		}
-
+		if (Keyboard::isKeyPressed(Keyboard::Num3))
+		{
+			action = "choose object to manipulate";
+		}
 		clicked = true;
 	}
 }
-void Manager::check_action(WindoW & window, int & object_counter, vector<Entity *> & objects)
+void Manager::check_action(WindoW & window, int & object_counter, vector<Entity *> & objects, int & usabling_object_id)
 {
 	if (action == "close")
 	{
@@ -131,6 +135,13 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 			}
 		}
 
+	}
+	if (action == "choose object to manipulate")
+	{
+		int id;
+		cout << "enter object id which you want to manipulate";
+		cin >> id;
+		usabling_object_id = id;
 	}
 	action = "-1";
 }
