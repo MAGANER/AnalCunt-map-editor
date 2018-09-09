@@ -8,6 +8,7 @@
 */
 #pragma once
 #include"WindoW.h"
+#include"Entity.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ private:
 public:
 	void is_user_clicking();
 	void get_action();
-	void check_action(WindoW & window);
+	void check_action(WindoW & window, int & object_counter, vector<Entity *> & objects);
 
 
 	Manager();

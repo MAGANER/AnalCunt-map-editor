@@ -8,9 +8,11 @@ class Entity: public Object
 {
 private:
 	int id; // number of object
-	int type;
+	string type;
 	json entity;
 public:
+	void set_id(int id);
+	void set_type(string type);
 	void set_data();
 	void serialisate_data();
 

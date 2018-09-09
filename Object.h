@@ -16,6 +16,7 @@ protected:
 public:
 	float get_x();
 	float get_y();
+	void set_image(string img);
 	void set_pos(float x, float y);
 	Sprite returnSprite();
 	Object();

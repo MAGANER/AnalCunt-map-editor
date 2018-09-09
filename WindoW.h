@@ -1,6 +1,7 @@
 #pragma once
 #include"stdafx.h"
 #include<vector>
+#include"Entity.h"
 class WindoW
 {
 private:
@@ -18,7 +19,8 @@ public:
 	void display();
 	void resize(int width, int height);
 
-	void draw();
+	void draw(vector<Entity *> & objects);
+	void draw(Entity object);
 
 	WindoW(int width, int height, string title);
 	~WindoW();
