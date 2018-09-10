@@ -121,6 +121,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		cin >> type;
 
 		object->set_image(path);
+		object->set_image_path(path);
 		object->set_type(type);
 		object->set_id(object_counter);
 		usabling_object_id = object_counter;

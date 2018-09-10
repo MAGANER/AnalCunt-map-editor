@@ -10,8 +10,10 @@ class Entity: public Object
 private:
 	int id; // number of object
 	string type;
+	string image_path;
 	json entity;
 public:
+	void set_image_path(string path);
 	json get_data();
 	void set_data();
 	int get_id();

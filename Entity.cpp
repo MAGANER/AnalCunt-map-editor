@@ -5,9 +5,18 @@ json Entity::get_data()
 {
 	return entity;
 }
+void Entity::set_image_path(string path)
+{
+	image_path = path;
+}
 void Entity::set_data()
 {
-	entity[to_string(id)] = { get_x(),get_y(),type };
+	//entity[to_string(id)] = { get_x(),get_y(),type };
+
+	entity[to_string(id)]["x"] = get_x();
+	entity[to_string(id)]["y"] = get_y();
+	entity[to_string(id)]["type"] = type;
+	entity[to_string(id)]["image_path"] = image_path;
 }
 int Entity::get_id()
 {
