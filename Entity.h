@@ -4,6 +4,7 @@
 
 using json = nlohmann::json;
 
+
 class Entity: public Object
 {
 private:
@@ -11,11 +12,13 @@ private:
 	string type;
 	json entity;
 public:
+	json get_data();
+	void set_data();
 	int get_id();
+	string get_type();
 	void set_id(int id);
 	void set_type(string type);
-	void set_data();
-	void serialisate_data();
+	
 
 	Entity();
 	~Entity();

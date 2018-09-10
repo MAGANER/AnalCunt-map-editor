@@ -19,9 +19,10 @@ void Manager::is_user_clicking()
 	bool down = !Keyboard::isKeyPressed(Keyboard::Down);
 	bool left = !Keyboard::isKeyPressed(Keyboard::Left);
 	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
+	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 
 	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
-		&& up && down && left && right;
+		&& up && down && left && right && Q;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -59,7 +60,7 @@ void Manager::get_action()
 			action = "choose object to manipulate";
 		}
 
-		// TODO:object moving
+		// object moving
 		if (Keyboard::isKeyPressed(Keyboard::Up))
 		{
 			action = "move up";
@@ -76,6 +77,13 @@ void Manager::get_action()
 		{
 			action = "move right";
 		}
+
+		//saving project into json file
+		if (Keyboard::isKeyPressed(Keyboard::Q))
+		{
+			action = "serialise";
+		}
+
 		clicked = true;
 	}
 }
@@ -235,6 +243,10 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		float old_y_pos = objects[object_number]->get_y();
 
 		objects[object_number]->set_pos(old_x_pos + 32, old_y_pos);
+	}
+	if (action == "serialise")
+	{
+		serialisator.serialisate(objects);
 	}
 	action = "-1";
 }

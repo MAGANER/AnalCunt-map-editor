@@ -9,6 +9,7 @@
 #pragma once
 #include"WindoW.h"
 #include"Entity.h"
+#include"Serialisator.h"
 
 using namespace std;
 
@@ -18,6 +19,8 @@ private:
 	int moving_length;
 	bool clicked;
 	string action;
+
+	Serialisator serialisator;
 public:
 	void is_user_clicking();
 	void get_action();
