@@ -6,6 +6,7 @@ Manager::Manager()
 {
 	action = "-1";
 	clicked = false;
+	moving_length = 32;
 }
 void Manager::is_user_clicking()
 {
@@ -15,6 +16,7 @@ void Manager::is_user_clicking()
 	bool num1 = !Keyboard::isKeyPressed(Keyboard::Num1);
 	bool num2 = !Keyboard::isKeyPressed(Keyboard::Num2);
 	bool num3 = !Keyboard::isKeyPressed(Keyboard::Num3);
+	bool num4 = !Keyboard::isKeyPressed(Keyboard::Num4);
 	bool up = !Keyboard::isKeyPressed(Keyboard::Up);
 	bool down = !Keyboard::isKeyPressed(Keyboard::Down);
 	bool left = !Keyboard::isKeyPressed(Keyboard::Left);
@@ -22,7 +24,7 @@ void Manager::is_user_clicking()
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 
 	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
-		&& up && down && left && right && Q;
+		&& up && down && left && right && Q && num4;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -58,6 +60,10 @@ void Manager::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::Num3))
 		{
 			action = "choose object to manipulate";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Num4))
+		{
+			action = "set length";
 		}
 
 		// object moving
@@ -191,7 +197,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		float old_x_pos = objects[object_number]->get_x();
 		float old_y_pos = objects[object_number]->get_y();
 
-		objects[object_number]->set_pos(old_x_pos, old_y_pos - 32);
+		objects[object_number]->set_pos(old_x_pos, old_y_pos - moving_length);
 	}
 	if (action == "move down")
 	{
@@ -208,7 +214,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		float old_x_pos = objects[object_number]->get_x();
 		float old_y_pos = objects[object_number]->get_y();
 
-		objects[object_number]->set_pos(old_x_pos, old_y_pos + 32);
+		objects[object_number]->set_pos(old_x_pos, old_y_pos + moving_length);
 
 	}
 	if (action == "move left")
@@ -226,7 +232,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		float old_x_pos = objects[object_number]->get_x();
 		float old_y_pos = objects[object_number]->get_y();
 
-		objects[object_number]->set_pos(old_x_pos - 32, old_y_pos);
+		objects[object_number]->set_pos(old_x_pos - moving_length, old_y_pos);
 	}
 	if (action == "move right")
 	{
@@ -243,11 +249,16 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		float old_x_pos = objects[object_number]->get_x();
 		float old_y_pos = objects[object_number]->get_y();
 
-		objects[object_number]->set_pos(old_x_pos + 32, old_y_pos);
+		objects[object_number]->set_pos(old_x_pos + moving_length, old_y_pos);
 	}
 	if (action == "serialise")
 	{
 		serialisator.serialisate(objects);
+	}
+	if (action == "set length")
+	{
+		cout << "enter moving length:";
+		cin >> moving_length;
 	}
 	action = "-1";
 }
