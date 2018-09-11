@@ -13,6 +13,7 @@ private:
 	string image_path;
 	json entity;
 public:
+	string get_image_path();
 	void set_image_path(string path);
 	json get_data();
 	void set_data();

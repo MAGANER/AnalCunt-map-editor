@@ -8,6 +8,11 @@ json Entity::get_data()
 void Entity::set_image_path(string path)
 {
 	image_path = path;
+	set_image(image_path);
+}
+string Entity::get_image_path()
+{
+	return image_path;
 }
 void Entity::set_data()
 {

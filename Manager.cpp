@@ -22,9 +22,11 @@ void Manager::is_user_clicking()
 	bool left = !Keyboard::isKeyPressed(Keyboard::Left);
 	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
+	bool E = !Keyboard::isKeyPressed(Keyboard::E);
+
 
 	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
-		&& up && down && left && right && Q && num4;
+		&& up && down && left && right && Q && num4 && E;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -88,6 +90,10 @@ void Manager::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::Q))
 		{
 			action = "serialise";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::E))
+		{
+			action = "deserialisate";
 		}
 
 		clicked = true;
@@ -259,6 +265,10 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	{
 		cout << "enter moving length:";
 		cin >> moving_length;
+	}
+	if (action == "deserialisate")
+	{
+		serialisator.deserialisate(objects);
 	}
 	action = "-1";
 }
