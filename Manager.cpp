@@ -99,7 +99,7 @@ void Manager::get_action()
 		clicked = true;
 	}
 }
-void Manager::check_action(WindoW & window, int & object_counter, vector<Entity *> & objects, int & usabling_object_id)
+void Manager::check_action(WindoW & window, int & object_counter, vector<Entity *> & objects, int & usabling_object_id, Camera & camera)
 {
 	if (action == "close")
 	{
@@ -119,6 +119,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		cout << "enter height:";
 		cin >> height;
 		window.resize(width, height);
+		camera.reset(width, height);
 
 	}
 	if (action == "create object")
