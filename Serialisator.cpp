@@ -56,16 +56,13 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
 			float x = world["world"][to_string(object_counter)].at(0);
 			float y = world["world"][to_string(object_counter)].at(1);
 			string image = world["world"][to_string(object_counter)].at(2);
-
+			string type = world["world"][to_string(object_counter)].at(3);
 
 			object->set_pos(x, y);
 			object->set_id(id);
 			object->set_image(image);
 			object->set_image_path(image);
-			//objects[object_counter]->set_id(id);
-			//objects[object_counter]->set_pos(x, y);
-			//objects[object_counter]->set_image(image);
-			//objects[object_counter]->set_image_path(image);
+			object->set_type(type);
 
 			objects.push_back(object);
 			++object_counter;
@@ -84,29 +81,10 @@ void Serialisator::serialisate(vector<Entity *> & objects)
 
 	for (int i = 0; i < objects.size(); ++i)
 	{
-		//int id = objects[i]->get_id();
-		//float x = objects[i]->get_x();
-		//float y = objects[i]->get_y();
-		//string type = objects[i]->get_type();
-		//objects[i]->set_data();
-		//json data = objects[i]->get_data();
-		//file << data;
-
-		//world["world"][to_string(objects[i]->get_id())]["type"] = objects[i]->get_type();
-		//world["world"][to_string(objects[i]->get_id())]["x"] = objects[i]->get_x();
-		//world["world"][to_string(objects[i]->get_id())]["y"] = objects[i]->get_y();
-		//world["world"][to_string(objects[i]->get_id())]["image_path"] = objects[i]->get_image_path();
-		//world["world"][to_string(objects[i]->get_id())]["id"] = objects[i]->get_id();
-		world["world"][to_string(objects[i]->get_id())] = { objects[i]->get_x(),objects[i]->get_y(),objects[i]->get_image_path() };
-
-
-			//world[to_string(id)]["x"] = x;
-			//world[to_string(id)]["y"] = y;
-			//world[to_string(id)]["type"] = type;
-
-		//world[to_string(id)] = { x, y,type };
-			 
-			//file << world
+		world["world"][to_string(objects[i]->get_id())] = { objects[i]->get_x(),
+			                                                objects[i]->get_y(),
+			                                                objects[i]->get_image_path(),
+		                                                    objects[i]->get_type()};
 	}
 	file << world;
 	file.close();
