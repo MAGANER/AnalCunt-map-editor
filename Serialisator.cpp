@@ -4,47 +4,22 @@
 
 void Serialisator::deserialisate(vector<Entity *> & objects)
 {
+
+	string file_path;
 	ifstream file;
 	Entity * object = new Entity();
 
+	cout << "enter file name:";
+	cin >> file_path;
 	
-	file.open("world.json");
-	file >> world;
-
-	//atoi(S.c_str());
-	int object_counter = 0;
-	//cout << world["world"][to_string(object_counter)];
-	/*while (true)
+	file.open(file_path);
+	if (file.fail())
 	{
-		if (world["world"][to_string(object_counter)])
-		{
-			float x = world["world"][to_string(object_counter)]["x"];
-			float y = world["world"][to_string(object_counter)]["y"];
-			
-			//float x =  world[to_string(object_counter)]["x"];
-			//float y =  world[to_string(object_counter)]["y"];
-			int id = object_counter;
-			string image_path = world["world"][to_string(object_counter)]["image_path"];
-			string type = world["world"][to_string(object_counter)]["type"];
-			//string image_path = world[to_string(object_counter)]["image_path"];
-			//string type = world[to_string(object_counter)]["type"];
-			cout << x<<endl;
-			cout << y << endl;
-			cout << image_path;
-			object->set_id(id);
-			object->set_pos(x, y);
-			object->set_image_path(image_path);
-			object->set_type(type);
-
-			objects.push_back(object);
-			++object_counter;
-		}
-		else {
-			break;
-			cout << "brea";
-		}
-	} */ 
-
+		cout << "fuck you";
+	}
+	file >> world;
+    
+	int object_counter = 0; 
 	while (true)
 	{
 		if (!world["world"][to_string(object_counter)].empty())
@@ -75,17 +50,22 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
 }
 void Serialisator::serialisate(vector<Entity *> & objects)
 {
+
+	string file_path;
 	json world;
 	ofstream file;
-	file.open("world.json", ios::app);
 
-	for (int i = 0; i < objects.size(); ++i)
-	{
-		world["world"][to_string(objects[i]->get_id())] = { objects[i]->get_x(),
-			                                                objects[i]->get_y(),
-			                                                objects[i]->get_image_path(),
-		                                                    objects[i]->get_type()};
-	}
+	cout << "enter file path:";
+	cin >> file_path;
+	file.open(file_path, ios::app);
+	
+		for (int i = 0; i < objects.size(); ++i)
+		{
+			world["world"][to_string(objects[i]->get_id())] = { objects[i]->get_x(),
+																objects[i]->get_y(),
+																objects[i]->get_image_path(),
+																objects[i]->get_type() };
+		}
 	file << world;
 	file.close();
 }
