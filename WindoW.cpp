@@ -1,6 +1,9 @@
 #include "WindoW.h"
 
-
+void WindoW::set_view(View & view)
+{
+	win.setView(view);
+}
 void WindoW::resize(int width, int height)
 {
 	Vector2u win_size;

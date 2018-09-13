@@ -18,6 +18,7 @@ public:
 	void clear();
 	void display();
 	void resize(int width, int height);
+	void set_view(View & view);
 
 	void draw(vector<Entity *> & objects);
 	void draw(Entity object);
