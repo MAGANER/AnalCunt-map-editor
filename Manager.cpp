@@ -23,7 +23,7 @@ void Manager::is_user_clicking()
 	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 	bool E = !Keyboard::isKeyPressed(Keyboard::E);
-
+	
 
 	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
 		&& up && down && left && right && Q && num4 && E;
@@ -48,6 +48,22 @@ void Manager::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::X))
 		{
 			action = "resize";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::W))
+		{
+			action = "up";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::S))
+		{
+			action = "down";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::A))
+		{
+			action = "left";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::D))
+		{
+			action = "right";
 		}
 
 		// object manipulation
@@ -101,6 +117,22 @@ void Manager::get_action()
 }
 void Manager::check_action(WindoW & window, int & object_counter, vector<Entity *> & objects, int & usabling_object_id, Camera & camera)
 {
+	if (action == "up")
+	{
+		camera.move(action);
+	}
+	if (action == "down")
+	{
+		camera.move(action);
+	}
+	if (action == "left")
+	{
+		camera.move(action);
+	}
+	if (action == "right")
+	{
+		camera.move(action);
+	}
 	if (action == "close")
 	{
 		window.close();
