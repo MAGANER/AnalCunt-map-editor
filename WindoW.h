@@ -2,7 +2,6 @@
 #include"stdafx.h"
 #include<vector>
 #include"Entity.h"
-#include"Trigger.h"
 class WindoW
 {
 private:
