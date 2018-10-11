@@ -1,6 +1,10 @@
 #include "Entity.h"
 
 
+void Entity::set_rotation(float angle)
+{
+	gobject_spr.setRotation(angle);
+}
 json Entity::get_data()
 {
 	return entity;

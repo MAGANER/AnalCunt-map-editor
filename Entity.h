@@ -21,6 +21,7 @@ public:
 	string get_type();
 	void set_id(int id);
 	void set_type(string type);
+	void set_rotation(float angle);
 	
 
 	Entity();

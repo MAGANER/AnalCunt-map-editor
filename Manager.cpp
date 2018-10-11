@@ -23,10 +23,11 @@ void Manager::is_user_clicking()
 	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 	bool E = !Keyboard::isKeyPressed(Keyboard::E);
+	bool R = !Keyboard::isKeyPressed(Keyboard::R);
 	
 
 	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
-		&& up && down && left && right && Q && num4 && E;
+		&& up && down && left && right && Q && num4 && E && R;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -83,9 +84,9 @@ void Manager::get_action()
 		{
 			action = "set length";
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Num5))
+		if (Keyboard::isKeyPressed(Keyboard::R))
 		{
-			action = "create trigger";
+			action = "set rotation";
 		}
 
 		// object moving
@@ -306,6 +307,14 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	if (action == "deserialisate")
 	{
 		serialisator.deserialisate(objects);
+	}
+	if (action == "set rotation")
+	{
+		float angle = 0.0f;
+		cout << "enter rotation angle:";
+		cin >> angle;
+		cout << "angle";
+		objects[usabling_object_id]->set_rotation(angle);
 	}
 	action = "-1";
 }
