@@ -83,6 +83,10 @@ void Manager::get_action()
 		{
 			action = "set length";
 		}
+		if (Keyboard::isKeyPressed(Keyboard::Num5))
+		{
+			action = "create trigger";
+		}
 
 		// object moving
 		if (Keyboard::isKeyPressed(Keyboard::Up))

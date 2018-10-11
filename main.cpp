@@ -15,6 +15,7 @@ int main()
 	Manager manager;
 	vector<Entity *> objects;
 
+
 	    camera.reset(400, 600);
 		while (window.is_open())
 		{
@@ -26,7 +27,9 @@ int main()
             
 			
 			window.set_view(camera.get_view());
+			window.clear();
 			window.draw(objects);
+			window.display();
 
 		}
 	

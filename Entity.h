@@ -7,7 +7,7 @@ using json = nlohmann::json;
 
 class Entity: public Object
 {
-private:
+protected:
 	int id; // number of object
 	string type;
 	string image_path;
@@ -24,6 +24,6 @@ public:
 	
 
 	Entity();
-	~Entity();
+	virtual ~Entity();
 };
 

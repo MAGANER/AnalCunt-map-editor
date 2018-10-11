@@ -21,18 +21,16 @@ void WindoW::display()
 }
 void WindoW::draw(vector<Entity *> & objects)
 {
-	win.clear();
 	for (int i = 0; i < objects.size(); i++)
 	{
 		win.draw(objects[i]->returnSprite());
 	}
-	win.display();
 }
+
+
 void WindoW::draw(Entity object)
 {
-	win.clear();
 	win.draw(object.returnSprite());
-	win.display();
 }
 
 void WindoW::close()
