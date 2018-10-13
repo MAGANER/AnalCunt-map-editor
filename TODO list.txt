@@ -1,1 +1,0 @@
-1.we need to save angle of rotation in file with level.

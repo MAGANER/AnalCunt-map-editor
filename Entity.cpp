@@ -1,6 +1,10 @@
 #include "Entity.h"
 
 
+float Entity::get_rotation()
+{
+	return gobject_spr.getRotation();
+}
 void Entity::set_rotation(float angle)
 {
 	gobject_spr.setRotation(angle);
