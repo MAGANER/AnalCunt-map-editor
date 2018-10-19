@@ -173,10 +173,17 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		object->set_image(path);
 		object->set_image_path(path);
 		object->set_type(type);
-		object->set_id(object_counter);
+		if (objects.size() != 0)
+		{
+			object->set_id(objects.size()+1);
+		}
+		else {
+			object->set_id(object_counter);
+		}
 		usabling_object_id = object_counter;
 
 		objects.push_back(object);
+		
 
 		++object_counter;
 	}
@@ -225,6 +232,11 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		cout << "enter object id which you want to manipulate:";
 		cin >> id;
 		usabling_object_id = id;
+		if (id == 1488)
+		{
+			// use last added object
+			usabling_object_id = objects.size();
+		}
 	}
 	if (action == "move up")
 	{
