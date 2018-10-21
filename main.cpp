@@ -10,13 +10,13 @@ int main()
 {
 	int usabling_object_id;
 	int object_counter = 0;
-	WindoW window(400, 600, "AnalCunt map editor");
+	WindoW window(720, 640, "AnalCunt map editor");
 	Camera camera;
 	Manager manager;
 	vector<Entity *> objects;
 
 
-	    camera.reset(400, 600);
+	    camera.reset(720, 640);
 		while (window.is_open())
 		{
 			window.check_event();

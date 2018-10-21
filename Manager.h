@@ -27,6 +27,7 @@ public:
 	void get_action();
 	void check_action(WindoW & window, int & object_counter, vector<Entity *> & objects, int & usabling_object_id, Camera & camera);
 
+  
 
 	Manager();
 	~Manager();

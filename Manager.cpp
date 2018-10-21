@@ -24,7 +24,6 @@ void Manager::is_user_clicking()
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 	bool E = !Keyboard::isKeyPressed(Keyboard::E);
 	bool R = !Keyboard::isKeyPressed(Keyboard::R);
-	
 
 	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
 		&& up && down && left && right && Q && num4 && E && R;
@@ -173,13 +172,9 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		object->set_image(path);
 		object->set_image_path(path);
 		object->set_type(type);
-		if (objects.size() != 0)
-		{
-			object->set_id(objects.size()+1);
-		}
-		else {
-			object->set_id(object_counter);
-		}
+		object->set_id(object_counter);
+
+
 		usabling_object_id = object_counter;
 
 		objects.push_back(object);
@@ -313,8 +308,10 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	}
 	if (action == "set length")
 	{
+		int length = 0;
 		cout << "enter moving length:";
-		cin >> moving_length;
+		cin >> length;
+		moving_length = length;
 	}
 	if (action == "deserialisate")
 	{
@@ -325,7 +322,6 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		float angle = 0.0f;
 		cout << "enter rotation angle:";
 		cin >> angle;
-		cout << "angle";
 		objects[usabling_object_id]->set_rotation(angle);
 	}
 	action = "-1";
