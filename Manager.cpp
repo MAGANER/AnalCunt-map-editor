@@ -7,6 +7,8 @@ Manager::Manager()
 	action = "-1";
 	clicked = false;
 	moving_length = 32;
+
+	usabling_object_id = 0;
 }
 void Manager::is_user_clicking()
 {
@@ -119,7 +121,7 @@ void Manager::get_action()
 		clicked = true;
 	}
 }
-void Manager::check_action(WindoW & window, int & object_counter, vector<Entity *> & objects, int & usabling_object_id, Camera & camera)
+void Manager::check_action(WindoW & window,  vector<Entity *> & objects,  Camera & camera)
 {
 	if (action == "up")
 	{
@@ -172,15 +174,21 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 		object->set_image(path);
 		object->set_image_path(path);
 		object->set_type(type);
-		object->set_id(object_counter);
+		if (objects.size() == 0)
+		{
+			object->set_id(0);
+		}
+		else {
+			cout << "new obj" << endl;
+			object->set_id(objects.size());
+		}
 
 
-		usabling_object_id = object_counter;
+		usabling_object_id = object->get_id();
 
 		objects.push_back(object);
 		
-
-		++object_counter;
+		cout << usabling_object_id << endl;
 	}
 	if (action == "reset object settings")
 	{
@@ -235,7 +243,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	}
 	if (action == "move up")
 	{
-		int object_number;
+		int object_number = NULL;
 		for (int i = 0; i < objects.size(); ++i)
 		{
 			if (objects[i]->get_id() == usabling_object_id)
@@ -252,7 +260,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	}
 	if (action == "move down")
 	{
-		int object_number;
+		int object_number = NULL;
 		for (int i = 0; i < objects.size(); ++i)
 		{
 			if (objects[i]->get_id() == usabling_object_id)
@@ -270,7 +278,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	}
 	if (action == "move left")
 	{
-		int object_number;
+		int object_number = NULL;
 		for (int i = 0; i < objects.size(); ++i)
 		{
 			if (objects[i]->get_id() == usabling_object_id)
@@ -287,7 +295,7 @@ void Manager::check_action(WindoW & window, int & object_counter, vector<Entity 
 	}
 	if (action == "move right")
 	{
-		int object_number;
+		int object_number = NULL;
 		for (int i = 0; i < objects.size(); ++i)
 		{
 			if (objects[i]->get_id() == usabling_object_id)

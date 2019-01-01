@@ -8,8 +8,6 @@
 
 int main()
 {
-	int usabling_object_id;
-	int object_counter = 0;
 	WindoW window(720, 640, "AnalCunt map editor");
 	Camera camera;
 	Manager manager;
@@ -23,7 +21,7 @@ int main()
 	        
 			manager.get_action();
 			manager.is_user_clicking();
-			manager.check_action(window, object_counter, objects, usabling_object_id, camera);
+			manager.check_action(window,  objects,  camera);
             
 			
 			window.set_view(camera.get_view());

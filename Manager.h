@@ -17,6 +17,9 @@ using namespace std;
 class Manager
 {
 private:
+	int usabling_object_id;
+
+
 	int moving_length;
 	bool clicked;
 	string action;
@@ -25,7 +28,7 @@ private:
 public:
 	void is_user_clicking();
 	void get_action();
-	void check_action(WindoW & window, int & object_counter, vector<Entity *> & objects, int & usabling_object_id, Camera & camera);
+	void check_action(WindoW & window,  vector<Entity *> & objects,  Camera & camera);
 
   
 
