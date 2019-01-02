@@ -1,7 +1,6 @@
 #include "Serialisator.h"
 
 
-
 void Serialisator::deserialisate(vector<Entity *> & objects)
 {
 	string file_path;

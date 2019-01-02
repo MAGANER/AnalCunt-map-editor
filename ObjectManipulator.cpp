@@ -58,6 +58,7 @@ void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction, f
 		objects[current_object_id]->set_pos(old_x_pos + length, old_y_pos);
 	}
 }
+
 ObjectManipulator::ObjectManipulator()
 {
 }

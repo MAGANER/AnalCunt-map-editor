@@ -10,6 +10,7 @@ public:
 	void delete_obj(vector<Entity *> & objects);
 	void move_obj(vector<Entity *> & objects,string direction,float length);
 	void rotate_obj(vector<Entity *> & objects,float angle);
+
 	ObjectManipulator();
 	~ObjectManipulator();
 };

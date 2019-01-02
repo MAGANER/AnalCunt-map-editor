@@ -1,21 +1,25 @@
 #include"stdafx.h"
 #include<conio.h>
-#include"Manager.h"
+#include"HotKeyProcessor.h"
 #include"WindoW.h"
 #include"Entity.h"
 #include<vector>
 #include"Camera.h"
-#include"TGUI\TGUI.hpp"
-
-using namespace tgui;
+#include"myMenuBar.h"
+#include"ObjectManipulator.h"
 
 int main()
 {
+	ObjectManipulator obj_manipulator;
+	vector<Entity *> objects;
+
 	Gui gui;
 	WindoW window(720, 640, "AnalCunt map editor",gui);
+
+	myMenuBar menuBar(gui,objects, obj_manipulator);
 	Camera camera;
-	Manager manager;
-	vector<Entity *> objects;
+	HotKeyProcessor manager;
+	
 
 
 	    camera.reset(720, 640);
@@ -25,7 +29,7 @@ int main()
 	        
 			manager.get_action();
 			manager.is_user_clicking();
-			manager.check_action(window,  objects,  camera);
+			manager.check_action(window,  objects,  camera, obj_manipulator);
             
 			
 			window.set_view(camera.get_view());

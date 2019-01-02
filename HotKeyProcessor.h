@@ -23,11 +23,11 @@ private:
 	string action;
 
 	Serialisator serialisator;
-	ObjectManipulator obj_manipulator;
+
 public:
 	void is_user_clicking();
 	void get_action();
-	void check_action(WindoW & window,  vector<Entity *> & objects,  Camera & camera);
+	void check_action(WindoW & window, vector<Entity *> & objects, Camera & camera, ObjectManipulator & obj_manipulator);
 
   
 

@@ -109,7 +109,7 @@ void HotKeyProcessor::get_action()
 		clicked = true;
 	}
 }
-void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,  Camera & camera)
+void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,  Camera & camera, ObjectManipulator & obj_manipulator)
 {
 	if (action == "up")
 	{
