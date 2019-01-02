@@ -1,8 +1,8 @@
-#include "Manager.h"
+#include "HotKeyProcessor.h"
 
 
 
-Manager::Manager()
+HotKeyProcessor::HotKeyProcessor()
 {
 	action = "-1";
 	clicked = false;
@@ -10,7 +10,7 @@ Manager::Manager()
 
 	usabling_object_id = 0;
 }
-void Manager::is_user_clicking()
+void HotKeyProcessor::is_user_clicking()
 {
 	bool escape = !Keyboard::isKeyPressed(Keyboard::Escape);
 	bool z = !Keyboard::isKeyPressed(Keyboard::Z);
@@ -34,7 +34,7 @@ void Manager::is_user_clicking()
 		clicked = false;
 	}
 }
-void Manager::get_action()
+void HotKeyProcessor::get_action()
 {
 	if (!clicked)
 	{
@@ -121,7 +121,7 @@ void Manager::get_action()
 		clicked = true;
 	}
 }
-void Manager::check_action(WindoW & window,  vector<Entity *> & objects,  Camera & camera)
+void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,  Camera & camera)
 {
 	if (action == "up")
 	{
@@ -336,6 +336,6 @@ void Manager::check_action(WindoW & window,  vector<Entity *> & objects,  Camera
 }
 
 
-Manager::~Manager()
+HotKeyProcessor::~HotKeyProcessor()
 {
 }

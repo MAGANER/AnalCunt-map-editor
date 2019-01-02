@@ -14,7 +14,7 @@
 
 using namespace std;
 
-class Manager
+class HotKeyProcessor
 {
 private:
 	int usabling_object_id;
@@ -32,7 +32,7 @@ public:
 
   
 
-	Manager();
-	~Manager();
+	HotKeyProcessor();
+	~HotKeyProcessor();
 };
 
