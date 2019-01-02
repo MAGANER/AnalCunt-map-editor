@@ -1,5 +1,11 @@
 #include "WindoW.h"
 
+
+Vector2u WindoW::get_size()
+{
+	return win.getSize();
+}
+
 void WindoW::set_view(View & view)
 {
 	win.setView(view);
@@ -73,8 +79,8 @@ void WindoW::check_event(Gui & gui)
 		if (event.type == Event::Closed)
 		{
 			win.close();
-			gui.handleEvent(event);
 		}
+		gui.handleEvent(event);
 	}
 }
 

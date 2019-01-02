@@ -13,7 +13,9 @@ private:
 	VideoMode size;
 	string title;
 public:
-	
+	Vector2u get_size();
+
+
 	bool is_open();
 	void check_event();
 	void check_event(Gui & gui);
