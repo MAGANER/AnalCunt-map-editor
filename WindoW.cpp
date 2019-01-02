@@ -19,6 +19,7 @@ void WindoW::display()
 {
 	win.display();
 }
+
 void WindoW::draw(vector<Entity *> & objects)
 {
 	for (int i = 0; i < objects.size(); i++)
@@ -26,12 +27,11 @@ void WindoW::draw(vector<Entity *> & objects)
 		win.draw(objects[i]->returnSprite());
 	}
 }
-
-
 void WindoW::draw(Entity object)
 {
 	win.draw(object.returnSprite());
 }
+
 
 void WindoW::close()
 {
@@ -65,12 +65,33 @@ void WindoW::check_event()
 		}
 	}
 }
+void WindoW::check_event(Gui & gui)
+{
+	Event event;
+	while (win.pollEvent(event))
+	{
+		if (event.type == Event::Closed)
+		{
+			win.close();
+			gui.handleEvent(event);
+		}
+	}
+}
 
 WindoW::WindoW(int width, int height, string title)
 {
 	size.height = height;
 	size.width = width;
 	this->title = title;
+	win.create(size, title);
+}
+
+WindoW::WindoW(int width, int height, string title, Gui & gui)
+{
+	size.height = height;
+	size.width = width;
+	this->title = title;
+	gui.setTarget(win);
 	win.create(size, title);
 }
 

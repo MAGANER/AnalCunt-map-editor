@@ -5,10 +5,14 @@
 #include"Entity.h"
 #include<vector>
 #include"Camera.h"
+#include"TGUI\TGUI.hpp"
+
+using namespace tgui;
 
 int main()
 {
-	WindoW window(720, 640, "AnalCunt map editor");
+	Gui gui;
+	WindoW window(720, 640, "AnalCunt map editor",gui);
 	Camera camera;
 	Manager manager;
 	vector<Entity *> objects;
@@ -17,7 +21,7 @@ int main()
 	    camera.reset(720, 640);
 		while (window.is_open())
 		{
-			window.check_event();
+			window.check_event(gui);
 	        
 			manager.get_action();
 			manager.is_user_clicking();
@@ -26,6 +30,7 @@ int main()
 			
 			window.set_view(camera.get_view());
 			window.clear();
+			gui.draw();
 			window.draw(objects);
 			window.display();
 
