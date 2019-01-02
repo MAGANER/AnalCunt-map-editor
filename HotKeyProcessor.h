@@ -11,20 +11,19 @@
 #include"Entity.h"
 #include"Camera.h"
 #include"Serialisator.h"
+#include"ObjectManipulator.h"
 
 using namespace std;
 
 class HotKeyProcessor
 {
 private:
-	int usabling_object_id;
-
-
 	int moving_length;
 	bool clicked;
 	string action;
 
 	Serialisator serialisator;
+	ObjectManipulator obj_manipulator;
 public:
 	void is_user_clicking();
 	void get_action();

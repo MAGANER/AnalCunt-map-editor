@@ -7,16 +7,12 @@ HotKeyProcessor::HotKeyProcessor()
 	action = "-1";
 	clicked = false;
 	moving_length = 32;
-
-	usabling_object_id = 0;
 }
 void HotKeyProcessor::is_user_clicking()
 {
 	bool escape = !Keyboard::isKeyPressed(Keyboard::Escape);
 	bool z = !Keyboard::isKeyPressed(Keyboard::Z);
 	bool x = !Keyboard::isKeyPressed(Keyboard::X);
-	bool num1 = !Keyboard::isKeyPressed(Keyboard::Num1);
-	bool num2 = !Keyboard::isKeyPressed(Keyboard::Num2);
 	bool num3 = !Keyboard::isKeyPressed(Keyboard::Num3);
 	bool num4 = !Keyboard::isKeyPressed(Keyboard::Num4);
 	bool up = !Keyboard::isKeyPressed(Keyboard::Up);
@@ -27,7 +23,7 @@ void HotKeyProcessor::is_user_clicking()
 	bool E = !Keyboard::isKeyPressed(Keyboard::E);
 	bool R = !Keyboard::isKeyPressed(Keyboard::R);
 
-	bool user_doesnt_click = escape && z && x && num1 && num2 && num3
+	bool user_doesnt_click = escape && z && x && num3
 		&& up && down && left && right && Q && num4 && E && R;
 	if (user_doesnt_click)
 	{
@@ -72,14 +68,6 @@ void HotKeyProcessor::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::Num1))
 		{
 			action = "create object";
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Num2))
-		{
-			action = "reset object settings";
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Num3))
-		{
-			action = "choose object to manipulate";
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Num4))
 		{
@@ -162,153 +150,23 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	}
 	if (action == "create object")
 	{
-		Entity * object = new Entity();
-		string type;
-		string path;
-
-		cout << "enter path to object image:";
-		cin >> path;
-		cout << "enter object type:";
-		cin >> type;
-
-		object->set_image(path);
-		object->set_image_path(path);
-		object->set_type(type);
-		if (objects.size() == 0)
-		{
-			object->set_id(0);
-		}
-		else {
-			cout << "new obj" << endl;
-			object->set_id(objects.size());
-		}
-
-
-		usabling_object_id = object->get_id();
-
-		objects.push_back(object);
-		
-		cout << usabling_object_id << endl;
-	}
-	if (action == "reset object settings")
-	{
-		int what_to_do;
-		int id;
-		cout << "enter object id:";
-		cin >> id;
-		cout << "1)reset positon /n 2) reset image /n :";
-		cin >> what_to_do;
-		if (what_to_do == 1)
-		{
-			int x, y;
-			cout << "enter x:";
-			cin >> x;
-			cout << "enter y:";
-			cin >> y;
-
-			for (int i = 0; i < objects.size(); ++i)
-			{
-				if (objects[i]->get_id() == id)
-				{
-					objects[i]->set_pos((float)x, (float)y);
-				}
-			}
-		}
-		if (what_to_do == 2)
-		{
-			string img;
-			cout << "enter path to new image:";
-			cin >> img;
-			for (int i = 0; i < objects.size(); ++i)
-			{
-				if (objects[i]->get_id() == id)
-				{
-					objects[i]->set_image(img);
-				}
-			}
-		}
-
-	}
-	if (action == "choose object to manipulate")
-	{
-		int id;
-		cout << "enter object id which you want to manipulate:";
-		cin >> id;
-		usabling_object_id = id;
-		if (id == 1488)
-		{
-			// use last added object
-			usabling_object_id = objects.size();
-		}
+		obj_manipulator.create_obj(objects);
 	}
 	if (action == "move up")
 	{
-		int object_number = NULL;
-		for (int i = 0; i < objects.size(); ++i)
-		{
-			if (objects[i]->get_id() == usabling_object_id)
-			{
-				object_number = i;
-				break;
-			}
-		}
-
-		float old_x_pos = objects[object_number]->get_x();
-		float old_y_pos = objects[object_number]->get_y();
-
-		objects[object_number]->set_pos(old_x_pos, old_y_pos - moving_length);
+		obj_manipulator.move_obj(objects, "up", moving_length);
 	}
 	if (action == "move down")
 	{
-		int object_number = NULL;
-		for (int i = 0; i < objects.size(); ++i)
-		{
-			if (objects[i]->get_id() == usabling_object_id)
-			{
-				object_number = i;
-				break;
-			}
-		}
-
-		float old_x_pos = objects[object_number]->get_x();
-		float old_y_pos = objects[object_number]->get_y();
-
-		objects[object_number]->set_pos(old_x_pos, old_y_pos + moving_length);
-
+		obj_manipulator.move_obj(objects, "down", moving_length);
 	}
 	if (action == "move left")
 	{
-		int object_number = NULL;
-		for (int i = 0; i < objects.size(); ++i)
-		{
-			if (objects[i]->get_id() == usabling_object_id)
-			{
-				object_number = i;
-				break;
-			}
-		}
-
-		float old_x_pos = objects[object_number]->get_x();
-		float old_y_pos = objects[object_number]->get_y();
-
-		objects[object_number]->set_pos(old_x_pos - moving_length, old_y_pos);
+		obj_manipulator.move_obj(objects, "left", moving_length);
 	}
 	if (action == "move right")
 	{
-		int object_number = NULL;
-		for (int i = 0; i < objects.size(); ++i)
-		{
-			if (objects[i]->get_id() == usabling_object_id)
-			{
-				object_number = i;
-				break;
-			}
-		}
-
-		float old_x_pos = objects[object_number]->get_x();
-		float old_y_pos = objects[object_number]->get_y();
-
-		objects[object_number]->set_pos(old_x_pos + moving_length, old_y_pos);
+		obj_manipulator.move_obj(objects, "right", moving_length);
 	}
 	if (action == "serialise")
 	{
@@ -327,10 +185,11 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	}
 	if (action == "set rotation")
 	{
+		
 		float angle = 0.0f;
 		cout << "enter rotation angle:";
 		cin >> angle;
-		objects[usabling_object_id]->set_rotation(angle);
+		obj_manipulator.rotate_obj(objects, angle);
 	}
 	action = "-1";
 }
