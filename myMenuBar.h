@@ -11,8 +11,6 @@ class myMenuBar
 private:
 	Serialisator serialisator;
 
-
-private:
 	Theme theme;
 	MenuBar::Ptr menu;
 public:

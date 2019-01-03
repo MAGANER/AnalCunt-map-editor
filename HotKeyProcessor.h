@@ -23,7 +23,6 @@ private:
 	string action;
 
 	Serialisator serialisator;
-
 public:
 	void is_user_clicking();
 	void get_action();

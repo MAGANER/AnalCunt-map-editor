@@ -2,7 +2,6 @@
 
 void ObjectManipulator::create_obj(vector<Entity *> & objects)
 {
-
 	bool able_to_create = false;
 
 	Gui *gui = new Gui;

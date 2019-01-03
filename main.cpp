@@ -11,6 +11,7 @@
 int main()
 {
 	ObjectManipulator obj_manipulator;
+
 	vector<Entity *> objects;
 
 	Gui gui;
