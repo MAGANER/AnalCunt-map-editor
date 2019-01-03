@@ -33,9 +33,9 @@ int main()
             
 			
 			window.set_view(camera.get_view());
-			window.clear(sf::Color(74,72,75));
-			gui.draw();
+			window.clear(sf::Color(74, 72, 75));
 			window.draw(objects);
+			gui.draw();
 			window.display();
 
 		}
