@@ -33,7 +33,7 @@ int main()
             
 			
 			window.set_view(camera.get_view());
-			window.clear();
+			window.clear(sf::Color(74,72,75));
 			gui.draw();
 			window.draw(objects);
 			window.display();
