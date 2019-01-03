@@ -2,31 +2,54 @@
 
 void ObjectManipulator::create_obj(vector<Entity *> & objects)
 {
-	Entity * object = new Entity();
-	string type;
-	string path;
 
-	cout << "enter path to object image:";
-	cin >> path;
-	cout << "enter object type:";
-	cin >> type;
+	bool able_to_create = false;
 
-	object->set_image(path);
-	object->set_image_path(path);
-	object->set_type(type);
-	if (objects.size() == 0)
+	Gui *gui = new Gui;
+	WindoW *window = new WindoW(400,400,"create object...",gui);
+	ObjectCreatingMenu creating_menu(gui,able_to_create);
+
+	
+	while (window->is_open())
 	{
-		object->set_id(0);
+		window->check_event(gui);
+		
+		String img_path = creating_menu.get_img_path();
+		String obj_type = creating_menu.get_obj_type();
+
+		bool got_data = !(img_path.isEmpty() && obj_type.isEmpty());
+		if (able_to_create && got_data)
+		{
+			Entity * object = new Entity();
+			object->set_image(img_path.toAnsiString());
+			object->set_image_path(img_path.toAnsiString());
+			object->set_type(obj_type.toAnsiString());
+			object->set_pos(100.0f, 100.0f);
+			if (objects.size() == 0)
+			{
+				object->set_id(0);
+			}
+			else {
+				object->set_id(objects.size());
+			}
+
+
+			current_object_id = object->get_id();
+
+			objects.push_back(object);
+
+			window->close();
+			able_to_create = false;
+		}
+	
+
+		window->clear(sf::Color(74, 72, 75));
+		gui->draw();
+		window->display();
 	}
-	else {
-		object->set_id(objects.size());
-	}
 
-
-	current_object_id = object->get_id();
-
-	objects.push_back(object);
-
+	delete gui;
+	delete window;
 }
 void ObjectManipulator::delete_obj(vector<Entity *> & objects)
 {

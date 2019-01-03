@@ -1,6 +1,9 @@
 #pragma once
 #include"stdafx.h"
 #include"Entity.h"
+#include"WindoW.h"
+#include"ObjectCreatingMenu.h"
+
 class ObjectManipulator
 {
 private:
