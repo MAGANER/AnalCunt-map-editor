@@ -21,6 +21,10 @@ void WindoW::clear()
 {
 	win.clear();
 }
+void WindoW::clear(sf::Color color)
+{
+	win.clear(color);
+}
 void WindoW::display()
 {
 	win.display();

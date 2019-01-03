@@ -22,7 +22,10 @@ public:
 
 	void create();
 	void close();
+
 	void clear();
+	void clear(sf::Color color);
+
 	void display();
 	void resize(int width, int height);
 	void set_view(View & view);
