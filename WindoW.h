@@ -2,9 +2,6 @@
 #include"stdafx.h"
 #include<vector>
 #include"Entity.h"
-#include"TGUI\TGUI.hpp"
-
-using namespace tgui;
 
 class WindoW
 {
@@ -19,6 +16,7 @@ public:
 	bool is_open();
 	void check_event();
 	void check_event(Gui & gui);
+	void check_event(Gui* & gui);
 
 	void create();
 	void close();
@@ -35,6 +33,7 @@ public:
 
 	WindoW(int width, int height, string title);
 	WindoW(int width, int height, string title, Gui & gui);
+	WindoW(int width, int height, string title, Gui* & gui);
 	~WindoW();
 };
 

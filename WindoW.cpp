@@ -87,6 +87,18 @@ void WindoW::check_event(Gui & gui)
 		gui.handleEvent(event);
 	}
 }
+void WindoW::check_event(Gui* & gui)
+{
+	Event event;
+	while (win.pollEvent(event))
+	{
+		if (event.type == Event::Closed)
+		{
+			win.close();
+		}
+		gui->handleEvent(event);
+	}
+}
 
 WindoW::WindoW(int width, int height, string title)
 {
@@ -104,7 +116,14 @@ WindoW::WindoW(int width, int height, string title, Gui & gui)
 	gui.setTarget(win);
 	win.create(size, title);
 }
-
+WindoW::WindoW(int width, int height, string title, Gui* & gui)
+{
+	size.height = height;
+	size.width = width;
+	this->title = title;
+	gui->setTarget(win);
+	win.create(size, title);
+}
 
 WindoW::~WindoW()
 {
