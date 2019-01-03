@@ -9,8 +9,8 @@ protected:
 	string img_file;
 
 	Image gobject_img;
-	Texture gobject_textr;
-	Sprite gobject_spr;
+	sf::Texture gobject_textr;
+	sf::Sprite gobject_spr;
 
 
 public:
@@ -18,7 +18,7 @@ public:
 	float get_y();
 	void set_image(string img);
 	void set_pos(float x, float y);
-	Sprite returnSprite();
+	sf::Sprite returnSprite();
 	Object();
 	virtual ~Object();
 };

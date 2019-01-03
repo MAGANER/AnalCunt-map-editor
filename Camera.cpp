@@ -21,7 +21,7 @@ void Camera::move(string direction)
 }
 void Camera::reset(int width, int height)
 {
-	view.reset(FloatRect(0, 0, width, height));
+	view.reset(sf::FloatRect(0, 0, width, height));
 }
 View Camera::get_view()
 {
