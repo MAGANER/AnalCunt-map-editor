@@ -44,7 +44,10 @@ void WindoW::draw(Entity object)
 {
 	win->draw(object.returnSprite());
 }
-
+void WindoW::draw(sf::Text text)
+{
+	win->draw(text);
+}
 
 void WindoW::close()
 {

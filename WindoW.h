@@ -30,6 +30,7 @@ public:
 
 	void draw(vector<Entity *> & objects);
 	void draw(Entity object);
+	void draw(sf::Text text);
 
 	WindoW(int width, int height, string title);
 	WindoW(int width, int height, string title, Gui & gui);

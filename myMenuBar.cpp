@@ -1,5 +1,7 @@
 #include "myMenuBar.h"
 
+
+
 myMenuBar::myMenuBar(Gui & gui, vector<Entity*> &objects, ObjectManipulator&  obj_manipulator)
 {
 	theme.load("themes/Black.txt");
@@ -10,6 +12,7 @@ myMenuBar::myMenuBar(Gui & gui, vector<Entity*> &objects, ObjectManipulator&  ob
 	menu->setTextSize(24);
 
 	menu->addMenu("File");
+
 	menu->addMenuItem("Save");
 	menu->connectMenuItem("File", "Save", &Serialisator::serialisate, &serialisator,ref(objects));
 
@@ -17,9 +20,17 @@ myMenuBar::myMenuBar(Gui & gui, vector<Entity*> &objects, ObjectManipulator&  ob
 	menu->connectMenuItem("File", "Load", &Serialisator::deserialisate, &serialisator, ref(objects));
 
 	menu->addMenu("Objects");
+
 	menu->addMenuItem("Create");
 	menu->connectMenuItem("Objects", "Create", &ObjectManipulator::create_obj, &obj_manipulator, ref(objects));
 
+	menu->addMenu("Help");
+
+	menu->addMenuItem("About");
+	menu->connectMenuItem("Help", "About",&HelpWindowDrawer::show_about_window,&drawer);
+
+	menu->addMenuItem("Hot keys");
+	menu->connectMenuItem("Help", "Hot keys", &HelpWindowDrawer::show_hot_key_window, &drawer);
 
 	gui.add(menu);
 }
