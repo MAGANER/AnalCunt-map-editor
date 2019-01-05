@@ -6,12 +6,12 @@
 class WindoW
 {
 private:
-	RenderWindow win;
+	RenderWindow* win;
 	VideoMode size;
 	string title;
 public:
 	Vector2u get_size();
-
+	sf::RenderWindow* get_win();
 
 	bool is_open();
 	void check_event();
