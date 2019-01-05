@@ -1,20 +1,25 @@
 #include "ObjectManipulator.h"
 
+
+void ObjectManipulator::choose_obj(int id)
+{
+	current_object_id = id;
+}
 void ObjectManipulator::create_obj(vector<Entity *> & objects)
 {
 	bool able_to_create = false;
 
 	Gui *gui = new Gui;
 	WindoW *window = new WindoW(400,400,"create object...",gui);
-	ObjectCreatingMenu creating_menu(gui,able_to_create);
+	ObjectCreatingMenu* creating_menu=  new ObjectCreatingMenu(gui,able_to_create);
 
 	
 	while (window->is_open())
 	{
 		window->check_event(gui);
 		
-		String img_path = creating_menu.get_img_path();
-		String obj_type = creating_menu.get_obj_type();
+		String img_path = creating_menu->get_img_path();
+		String obj_type = creating_menu->get_obj_type();
 
 		bool got_data = !(img_path.isEmpty() && obj_type.isEmpty());
 		if (able_to_create && got_data)
@@ -81,6 +86,47 @@ void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction, f
 	}
 }
 
+void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects, int & object_id)
+{
+	bool able_to_change = false;
+
+	Gui* gui = new Gui;
+	WindoW* window = new WindoW(400, 400, "change object...", gui);
+	ObjectParameterWindow* parameter_window = new ObjectParameterWindow(gui, able_to_change);
+
+	parameter_window->set_parameters(objects, object_id);
+	while (window->is_open())
+	{
+		window->check_event(gui);
+		if (able_to_change)
+		{
+			for (size_t i = 0; i < objects.size(); ++i)
+			{
+				if (object_id == objects[i]->get_id())
+				{
+					int id =atoi(parameter_window->get_id().c_str());
+					float rotation_angle = (float)atoi(parameter_window->get_rotation_angle().c_str());
+
+					objects[i]->set_id(id);
+					objects[i]->set_rotation(rotation_angle);
+					objects[i]->set_image_path(parameter_window->get_img_path());
+					objects[i]->set_type(parameter_window->get_type());
+				}
+			}
+
+			able_to_change = false;
+			window->close();
+		}
+
+		window->clear(sf::Color(74, 72, 75));
+		gui->draw();
+		window->display();
+	}
+
+	delete window;
+	delete gui;
+	delete parameter_window;
+}
 ObjectManipulator::ObjectManipulator()
 {
 }

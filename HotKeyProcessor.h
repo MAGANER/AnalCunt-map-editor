@@ -23,6 +23,8 @@ private:
 	string action;
 
 	Serialisator serialisator;
+
+	void check_mouse_clicked_at_object(vector<Entity *> & objects, int & object_id, WindoW & win);
 public:
 	void is_user_clicking();
 	void get_action();
