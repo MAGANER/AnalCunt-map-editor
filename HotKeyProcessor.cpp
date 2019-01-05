@@ -51,8 +51,6 @@ HotKeyProcessor::HotKeyProcessor()
 void HotKeyProcessor::is_user_clicking()
 {
 	bool escape = !Keyboard::isKeyPressed(Keyboard::Escape);
-	bool z = !Keyboard::isKeyPressed(Keyboard::Z);
-	bool x = !Keyboard::isKeyPressed(Keyboard::X);
 	bool num3 = !Keyboard::isKeyPressed(Keyboard::Num3);
 	bool num4 = !Keyboard::isKeyPressed(Keyboard::Num4);
 	bool up = !Keyboard::isKeyPressed(Keyboard::Up);
@@ -64,7 +62,7 @@ void HotKeyProcessor::is_user_clicking()
 	bool R = !Keyboard::isKeyPressed(Keyboard::R);
 	bool left_mouse_button = !Mouse::isButtonPressed(Mouse::Button::Left);
 
-	bool user_doesnt_click = escape && z && x && num3
+	bool user_doesnt_click = escape &&  num3
 		&& up && down && left && right && Q && num4 && E && R && left_mouse_button;
 	if (user_doesnt_click)
 	{
@@ -79,14 +77,6 @@ void HotKeyProcessor::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			action = "close";
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Z))
-		{
-			action = "clear";
-		}
-		if (Keyboard::isKeyPressed(Keyboard::X))
-		{
-			action = "resize";
 		}
 		if (Keyboard::isKeyPressed(Keyboard::W))
 		{
@@ -113,10 +103,6 @@ void HotKeyProcessor::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::Num4))
 		{
 			action = "set length";
-		}
-		if (Keyboard::isKeyPressed(Keyboard::R))
-		{
-			action = "set rotation";
 		}
 		if (Mouse::isButtonPressed(Mouse::Button::Left))
 		{
@@ -177,23 +163,6 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	{
 		window.close();
 	}
-	if (action == "clear")
-	{
-		window.clear();
-	}
-	if (action == "resize")
-	{
-		int width, height;
-		cout << "enter width:";
-		cin >> width;
-		cout << endl;
-		
-		cout << "enter height:";
-		cin >> height;
-		window.resize(width, height);
-		camera.reset(width, height);
-
-	}
 	if (action == "create object")
 	{
 		obj_manipulator.create_obj(objects);
@@ -228,14 +197,6 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	if (action == "deserialisate")
 	{
 		serialisator.deserialisate(objects);
-	}
-	if (action == "set rotation")
-	{
-		
-		float angle = 0.0f;
-		cout << "enter rotation angle:";
-		cin >> angle;
-		obj_manipulator.rotate_obj(objects, angle);
 	}
 	if (action == "change")
 	{
