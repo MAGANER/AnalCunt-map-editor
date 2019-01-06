@@ -50,6 +50,7 @@ HotKeyProcessor::HotKeyProcessor()
 }
 void HotKeyProcessor::is_user_clicking()
 {
+	bool r = !(Keyboard::isKeyPressed(Keyboard::R));
 	bool escape = !Keyboard::isKeyPressed(Keyboard::Escape);
 	bool num3 = !Keyboard::isKeyPressed(Keyboard::Num3);
 	bool num4 = !Keyboard::isKeyPressed(Keyboard::Num4);
@@ -59,11 +60,10 @@ void HotKeyProcessor::is_user_clicking()
 	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 	bool E = !Keyboard::isKeyPressed(Keyboard::E);
-	bool R = !Keyboard::isKeyPressed(Keyboard::R);
 	bool left_mouse_button = !Mouse::isButtonPressed(Mouse::Button::Left);
 
-	bool user_doesnt_click = escape &&  num3
-		&& up && down && left && right && Q && num4 && E && R && left_mouse_button;
+	bool user_doesnt_click = escape &&  num3 && r 
+		&& up && down && left && right && Q && num4 && E &&  left_mouse_button;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -108,7 +108,10 @@ void HotKeyProcessor::get_action()
 		{
 			action = "change";
 		}
-
+		if (Keyboard::isKeyPressed(Keyboard::R))
+		{
+			action = "rotate";
+		}
 
 		// object moving
 		if (Keyboard::isKeyPressed(Keyboard::Up))
@@ -207,7 +210,11 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 			obj_manipulator.choose_obj(object_id);
 			obj_manipulator.change_obj_parameters(objects,object_id);
 		}
-
+		object_id = -1;
+	}
+	if (action == "rotate")
+	{
+		obj_manipulator.rotate_obj(objects, 2.0f);
 	}
 	action = "-1";
 }

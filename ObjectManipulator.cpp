@@ -61,7 +61,14 @@ void ObjectManipulator::delete_obj(vector<Entity *> & objects)
 }
 void ObjectManipulator::rotate_obj(vector<Entity *> & objects, float angle)
 {
-	objects[current_object_id]->set_rotation(angle);
+	for (size_t i = 0; i < objects.size(); ++i)
+	{
+		if (objects[i]->get_id() == current_object_id)
+		{
+			objects[i]->set_rotation(objects[i]->get_rotation()+ angle);
+		}
+	}
+	
 }
 void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction, float length)
 {
