@@ -32,10 +32,12 @@ void HotKeyProcessor::check_mouse_clicked_at_object(vector<Entity *> & objects, 
 			object_id = objects[i]->get_id();
 			break;
 		}
-
-		/* it doesn't work. why?
+		
+		// it doesn't work. why?
+		/*
 		if (objects[i]->returnSprite().getTextureRect().contains(mouse_pos))
 		{
+			cout << "dead" << endl;
 			object_id = objects[i]->get_id();
 			break;
 		}
@@ -50,6 +52,7 @@ HotKeyProcessor::HotKeyProcessor()
 }
 void HotKeyProcessor::is_user_clicking()
 {
+	bool C = !Keyboard::isKeyPressed(Keyboard::C);
 	bool r = !(Keyboard::isKeyPressed(Keyboard::R));
 	bool escape = !Keyboard::isKeyPressed(Keyboard::Escape);
 	bool num3 = !Keyboard::isKeyPressed(Keyboard::Num3);
@@ -111,6 +114,10 @@ void HotKeyProcessor::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::R))
 		{
 			action = "rotate";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::C))
+		{
+			action = "change last one";
 		}
 
 		// object moving
@@ -215,6 +222,10 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	if (action == "rotate")
 	{
 		obj_manipulator.rotate_obj(objects, 2.0f);
+	}
+	if (action == "change last one")
+	{
+		obj_manipulator.change_obj_parameters(objects);
 	}
 	action = "-1";
 }

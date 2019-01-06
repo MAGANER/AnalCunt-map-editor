@@ -15,8 +15,12 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
 	{
 		window->check_event(gui);
 
-		String path = serialisator->get_path();
+		if (Keyboard::isKeyPressed(Keyboard::Space) || Keyboard::isKeyPressed(Keyboard::Enter))
+		{
+			ok = true;
+		}
 
+		String path = serialisator->get_path();
 		if (ok)
 		{
 			string file_path = path.toAnsiString();
@@ -88,6 +92,12 @@ void Serialisator::serialisate(vector<Entity *> & objects)
 	while (window->is_open())
 	{
 		window->check_event(gui);
+
+		if (Keyboard::isKeyPressed(Keyboard::Space) || Keyboard::isKeyPressed(Keyboard::Enter))
+		{
+			ok = true;
+		}
+
 
 		String path = serialisator->get_path();
 		if (ok)

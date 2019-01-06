@@ -3,6 +3,7 @@
 
 float Entity::get_rotation()
 {
+	cout << "rotation:" << gobject_spr.getRotation() << endl;
 	return gobject_spr.getRotation();
 }
 void Entity::set_rotation(float angle)

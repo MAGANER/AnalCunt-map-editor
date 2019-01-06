@@ -22,6 +22,12 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 		String obj_type = creating_menu->get_obj_type();
 
 		bool got_data = !(img_path.isEmpty() && obj_type.isEmpty());
+
+		if (Keyboard::isKeyPressed(Keyboard::Space) || Keyboard::isKeyPressed(Keyboard::Enter))
+		{
+			able_to_create = true;
+		}
+
 		if (able_to_create && got_data)
 		{
 			Entity * object = new Entity();
@@ -92,7 +98,53 @@ void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction, f
 		objects[current_object_id]->set_pos(old_x_pos + length, old_y_pos);
 	}
 }
+void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects)
+{
+	bool able_to_change = false;
 
+	Gui* gui = new Gui;
+	WindoW* window = new WindoW(400, 400, "change object...", gui);
+	ObjectParameterWindow* parameter_window = new ObjectParameterWindow(gui, able_to_change);
+
+	parameter_window->set_parameters(objects, current_object_id);
+	while (window->is_open())
+	{
+		window->check_event(gui);
+		if (Keyboard::isKeyPressed(Keyboard::Space) || Keyboard::isKeyPressed(Keyboard::Enter))
+		{
+			able_to_change = true;
+		}
+
+
+		if (able_to_change)
+		{
+			for (size_t i = 0; i < objects.size(); ++i)
+			{
+				if (current_object_id == objects[i]->get_id())
+				{
+					int id = atoi(parameter_window->get_id().c_str());
+					float rotation_angle = (float)atoi(parameter_window->get_rotation_angle().c_str());
+
+					objects[i]->set_id(id);
+					objects[i]->set_rotation(rotation_angle);
+					objects[i]->set_image_path(parameter_window->get_img_path());
+					objects[i]->set_type(parameter_window->get_type());
+				}
+			}
+
+			able_to_change = false;
+			window->close();
+		}
+
+		window->clear(sf::Color(74, 72, 75));
+		gui->draw();
+		window->display();
+	}
+
+	delete window;
+	delete gui;
+	delete parameter_window;
+}
 void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects, int & object_id)
 {
 	bool able_to_change = false;
@@ -105,6 +157,12 @@ void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects, int & 
 	while (window->is_open())
 	{
 		window->check_event(gui);
+		if (Keyboard::isKeyPressed(Keyboard::Space) || Keyboard::isKeyPressed(Keyboard::Enter))
+		{
+			able_to_change = true;
+		}
+
+
 		if (able_to_change)
 		{
 			for (size_t i = 0; i < objects.size(); ++i)

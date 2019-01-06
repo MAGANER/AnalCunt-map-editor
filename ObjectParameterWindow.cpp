@@ -103,7 +103,7 @@ ObjectParameterWindow::ObjectParameterWindow(Gui* & gui, bool & able_to_change)
 	change = Button::create();
 	change->setRenderer(theme.getRenderer("Button"));
 	change->setPosition(250, 820);
-	change->setText("create!");
+	change->setText("change!");
 	change->setTextSize(48);
 	change->setSize(300, 150);
 	change->connect("pressed", [&]() {able_to_change = true; });
