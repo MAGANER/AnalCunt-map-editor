@@ -13,12 +13,13 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 	WindoW *window = new WindoW(400,400,"create object...",gui);
 	ObjectCreatingMenu* creating_menu=  new ObjectCreatingMenu(gui,able_to_create);
 	
-	
+
+	bool use_cash = false;
 	while (window->is_open())
 	{
 		window->check_event(gui);
 
-		bool use_cash = false;
+		
 		if (objects.size() != 0 && !use_cash)
 		{
 			creating_menu->load_cash();
