@@ -1,6 +1,45 @@
 #include "ObjectManipulator.h"
 
+void ObjectManipulator::change_moving_length()
+{
+	bool ok = false;
 
+	Gui* gui = new Gui;
+	WindoW* window = new WindoW(300, 300, "change moving length", gui);
+	Moving_length_menu* menu = new Moving_length_menu(gui, ok);
+
+	while (window->is_open())
+	{
+		window->check_event(gui);
+
+
+		if (Keyboard::isKeyPressed(Keyboard::Enter))
+		{
+			ok = true;
+		}
+
+		int new_length = menu->get_length();
+		bool got_data = new_length != 0;
+		if (ok && got_data)
+		{
+			moving_length = new_length;
+			ok = false;
+			window->close();
+		}
+		else 
+		{
+			ok = false;
+		}
+
+		window->clear(sf::Color(74, 72, 75));
+		gui->draw();
+		window->display();
+	}
+
+	delete gui;
+	delete window;
+	delete menu;
+}
 void ObjectManipulator::choose_obj(int id)
 {
 	current_object_id = id;
@@ -75,6 +114,7 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 		window->display();
 	}
 
+	delete creating_menu;
 	delete gui;
 	delete window;
 }
@@ -93,26 +133,26 @@ void ObjectManipulator::rotate_obj(vector<Entity *> & objects, float angle)
 	}
 	
 }
-void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction, float length)
+void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction)
 {
 	float old_x_pos = objects[current_object_id]->get_x();
 	float old_y_pos = objects[current_object_id]->get_y();
 
 	if (direction == "up")
 	{	
-		objects[current_object_id]->set_pos(old_x_pos, old_y_pos - length);
+		objects[current_object_id]->set_pos(old_x_pos, old_y_pos - moving_length);
 	}
 	if (direction == "down")
 	{
-		objects[current_object_id]->set_pos(old_x_pos, old_y_pos + length);
+		objects[current_object_id]->set_pos(old_x_pos, old_y_pos + moving_length);
 	}
 	if (direction == "left")
 	{
-		objects[current_object_id]->set_pos(old_x_pos - length, old_y_pos);
+		objects[current_object_id]->set_pos(old_x_pos - moving_length, old_y_pos);
 	}
 	if (direction == "right")
 	{
-		objects[current_object_id]->set_pos(old_x_pos + length, old_y_pos);
+		objects[current_object_id]->set_pos(old_x_pos + moving_length, old_y_pos);
 	}
 }
 void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects)
@@ -211,6 +251,7 @@ void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects, int & 
 }
 ObjectManipulator::ObjectManipulator()
 {
+	moving_length = 32;
 }
 
 

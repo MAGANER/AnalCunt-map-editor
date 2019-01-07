@@ -184,19 +184,19 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	}
 	if (action == "move up")
 	{
-		obj_manipulator.move_obj(objects, "up", moving_length);
+		obj_manipulator.move_obj(objects, "up");
 	}
 	if (action == "move down")
 	{
-		obj_manipulator.move_obj(objects, "down", moving_length);
+		obj_manipulator.move_obj(objects, "down");
 	}
 	if (action == "move left")
 	{
-		obj_manipulator.move_obj(objects, "left", moving_length);
+		obj_manipulator.move_obj(objects, "left");
 	}
 	if (action == "move right")
 	{
-		obj_manipulator.move_obj(objects, "right", moving_length);
+		obj_manipulator.move_obj(objects, "right");
 	}
 	if (action == "serialise")
 	{
@@ -204,10 +204,13 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	}
 	if (action == "set length")
 	{
+		/*
 		int length = 0;
 		cout << "enter moving length:";
 		cin >> length;
 		moving_length = length;
+		*/
+		obj_manipulator.change_moving_length();
 	}
 	if (action == "deserialisate")
 	{

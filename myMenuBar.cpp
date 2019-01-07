@@ -24,6 +24,9 @@ myMenuBar::myMenuBar(Gui & gui, vector<Entity*> &objects, ObjectManipulator&  ob
 	menu->addMenuItem("Create");
 	menu->connectMenuItem("Objects", "Create", &ObjectManipulator::create_obj, &obj_manipulator, ref(objects));
 
+	menu->addMenuItem("Change moving length");
+	menu->connectMenuItem("Objects", "Change moving length", &ObjectManipulator::change_moving_length, &obj_manipulator);
+
 	menu->addMenu("Help");
 
 	menu->addMenuItem("About");
