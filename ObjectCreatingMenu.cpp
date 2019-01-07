@@ -1,6 +1,53 @@
 #include "ObjectCreatingMenu.h"
 
 
+void ObjectCreatingMenu::set_cash(String type,String image_path)
+{
+	last_object_type = type;
+	last_object_image_path = image_path; 
+}
+void ObjectCreatingMenu::use_cash()
+{
+	edb_enter_type->setText(last_object_type);
+	edb_enter_img_path->setText(last_object_image_path);
+}
+
+void ObjectCreatingMenu::save_cash()
+{
+	ofstream file;
+	file.open("data/cash.txt");
+	file.clear();
+	if (!file)
+	{
+		cout << "wtf" << endl;
+	}
+
+	file << last_object_type.toAnsiString();
+	file << endl;
+	file << last_object_image_path.toAnsiString();
+	file.close();
+}
+void ObjectCreatingMenu::load_cash()
+{
+	ifstream file;
+	file.open("data/cash.txt");
+	if (!file)
+	{
+		cout << "wtf" << endl;
+	}
+
+	string type, img_path;
+	file >> type;
+	file >> img_path;
+	file.close();
+
+	last_object_type = type;
+	last_object_image_path = img_path;
+	cout << last_object_image_path.toAnsiString() << endl;
+	cout << last_object_type.toAnsiString() << endl;
+}
+
+
 String ObjectCreatingMenu::get_img_path()
 {
 	return edb_enter_img_path->getText();

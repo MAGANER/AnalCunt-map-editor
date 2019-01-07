@@ -12,18 +12,26 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 	Gui *gui = new Gui;
 	WindoW *window = new WindoW(400,400,"create object...",gui);
 	ObjectCreatingMenu* creating_menu=  new ObjectCreatingMenu(gui,able_to_create);
-
+	
 	
 	while (window->is_open())
 	{
 		window->check_event(gui);
-		
+
+		bool use_cash = false;
+		if (objects.size() != 0 && !use_cash)
+		{
+			creating_menu->load_cash();
+			creating_menu->use_cash();
+			use_cash = true;
+		}
+
 		String img_path = creating_menu->get_img_path();
 		String obj_type = creating_menu->get_obj_type();
 
 		bool got_data = !(img_path.isEmpty() && obj_type.isEmpty());
 
-		if (Keyboard::isKeyPressed(Keyboard::Space) || Keyboard::isKeyPressed(Keyboard::Enter))
+		if (Keyboard::isKeyPressed(Keyboard::Enter))
 		{
 			able_to_create = true;
 		}
@@ -44,6 +52,10 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 				object->set_pos(objects[current_object_id]->get_x()+100.0f, objects[current_object_id]->get_y());
 				object->set_id(objects.size());
 			}
+			
+			
+			creating_menu->set_cash(obj_type, img_path);
+			creating_menu->save_cash();
 
 
 			current_object_id = object->get_id();
@@ -51,7 +63,9 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			objects.push_back(object);
 
 			window->close();
+
 			able_to_create = false;
+			use_cash = false;
 		}
 	
 
