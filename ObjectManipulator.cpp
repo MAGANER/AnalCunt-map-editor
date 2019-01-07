@@ -46,6 +46,7 @@ void ObjectManipulator::choose_obj(int id)
 }
 void ObjectManipulator::create_obj(vector<Entity *> & objects)
 {
+	cout << "START TO CREATE" << endl;
 	bool able_to_create = false;
 
 	Gui *gui = new Gui;
@@ -78,6 +79,7 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 
 		if (able_to_create && got_data)
 		{
+			cout << "WTF" << endl;
 			Entity * object = new Entity();
 			object->set_image(img_path.toAnsiString());
 			object->set_image_path(img_path.toAnsiString());
@@ -85,12 +87,26 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			
 			if (objects.size() == 0)
 			{
+				cout << "thos" << endl;
 				object->set_pos(100.0f, 100.0f);
 				object->set_id(0);
 			}
 			else {
-				object->set_pos(objects[current_object_id]->get_x()+100.0f, objects[current_object_id]->get_y());
+				//when we continue to made new level, we open programm
+				//and this variable will have zero value
+				//so we have to check that
+				if (current_object_id == NULL)
+				{
+					cout <<"shit: " << endl;
+					object->set_pos(objects[current_object_id]->get_x() + moving_length, objects[current_object_id]->get_y());
+				}
+				else {
+					cout << "no" << endl;
+					object->set_pos(objects[objects.size()-1]->get_x() + moving_length, objects[objects.size() - 1]->get_y());
+				}
+
 				object->set_id(objects.size());
+				cout << object->get_id()<< " id"<<endl;
 			}
 			
 			
@@ -99,6 +115,7 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 
 
 			current_object_id = object->get_id();
+			cout << current_object_id << "dwdsdad   size:" << objects.size()<< endl;
 
 			objects.push_back(object);
 
