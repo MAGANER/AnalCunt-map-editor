@@ -34,12 +34,14 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			object->set_image(img_path.toAnsiString());
 			object->set_image_path(img_path.toAnsiString());
 			object->set_type(obj_type.toAnsiString());
-			object->set_pos(100.0f, 100.0f);
+			
 			if (objects.size() == 0)
 			{
+				object->set_pos(100.0f, 100.0f);
 				object->set_id(0);
 			}
 			else {
+				object->set_pos(objects[current_object_id]->get_x()+100.0f, objects[current_object_id]->get_y());
 				object->set_id(objects.size());
 			}
 
