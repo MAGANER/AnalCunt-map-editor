@@ -10,7 +10,6 @@ private:
 	sf::Text serialisate;
 	sf::Text deserialisate;
 	sf::Text create_obj;
-	sf::Text change_obj;
 	sf::Text move_obj;
 	sf::Text move_camera;
 

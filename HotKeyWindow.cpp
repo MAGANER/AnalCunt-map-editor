@@ -6,7 +6,6 @@ void HotKeyWindow::draw(WindoW* & window)
 	window->draw(serialisate);
 	window->draw(deserialisate);
 	window->draw(create_obj);
-	window->draw(change_obj);
 	window->draw(move_camera);
 	window->draw(move_obj);
 }
@@ -29,19 +28,15 @@ HotKeyWindow::HotKeyWindow()
 	create_obj.setPosition(10, 120);
 	create_obj.setFont(font);
 
-	change_obj.setString("press left mouse button to change object");
-	change_obj.setCharacterSize(12);
-	change_obj.setPosition(10, 160);
-	change_obj.setFont(font);
 
 	move_obj.setString("press UP, DOWN, LEFT,RIGHT to move object");
 	move_obj.setCharacterSize(12);
-	move_obj.setPosition(10, 200);
+	move_obj.setPosition(10, 160);
 	move_obj.setFont(font);
 
 	move_camera.setString("press W, S, A,D to move object");
 	move_camera.setCharacterSize(12);
-	move_camera.setPosition(10, 240);
+	move_camera.setPosition(10, 200);
 	move_camera.setFont(font);
 }
 

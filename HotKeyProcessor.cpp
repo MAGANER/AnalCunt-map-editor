@@ -1,49 +1,6 @@
 #include "HotKeyProcessor.h"
 
 
-void HotKeyProcessor::check_mouse_clicked_at_object(vector<Entity *> & objects, int & object_id, WindoW & win)
-{	
-	for (size_t i = 0; i < objects.size(); ++i)
-	{
-		Vector2i mouse_pos = sf::Mouse::getPosition(*win.get_win());
-		float mouse_x = mouse_pos.x;
-		float mouse_y = mouse_pos.y;
-
-		float x_left_edge = objects[i]->get_x();
-
-		float width = objects[i]->returnSprite().getTextureRect().width;
-		float x_right_edge = objects[i]->get_x() + width;
-
-		float y_top_edge = objects[i]->get_y();
-
-		float height = objects[i]->returnSprite().getTextureRect().height;
-		float y_down_edge = y_top_edge + height;
-
-
-		bool x_intersection = mouse_x > x_left_edge 
-			               && mouse_x < x_right_edge;
-
-		bool y_intersection = mouse_y > y_top_edge
-			               && mouse_y < y_down_edge;
-
-		
-		if (x_intersection && y_intersection)
-		{
-			object_id = objects[i]->get_id();
-			break;
-		}
-		
-		// it doesn't work. why?
-		/*
-		if (objects[i]->returnSprite().getTextureRect().contains(mouse_pos))
-		{
-			cout << "dead" << endl;
-			object_id = objects[i]->get_id();
-			break;
-		}
-		*/
-	}
-}
 HotKeyProcessor::HotKeyProcessor()
 {
 	action = "-1";
@@ -64,10 +21,9 @@ void HotKeyProcessor::is_user_clicking()
 	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 	bool E = !Keyboard::isKeyPressed(Keyboard::E);
-	bool left_mouse_button = !Mouse::isButtonPressed(Mouse::Button::Left);
 
 	bool user_doesnt_click = escape &&  num3 && r && t
-		&& up && down && left && right && Q && num4 && E &&  left_mouse_button;
+		&& up && down && left && right && Q && num4 && E;
 	if (user_doesnt_click)
 	{
 		clicked = false;
@@ -107,10 +63,6 @@ void HotKeyProcessor::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::Num4))
 		{
 			action = "set length";
-		}
-		if (Mouse::isButtonPressed(Mouse::Button::Left))
-		{
-			action = "change";
 		}
 		if (Keyboard::isKeyPressed(Keyboard::R))
 		{
@@ -204,28 +156,11 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	}
 	if (action == "set length")
 	{
-		/*
-		int length = 0;
-		cout << "enter moving length:";
-		cin >> length;
-		moving_length = length;
-		*/
 		obj_manipulator.change_moving_length();
 	}
 	if (action == "deserialisate")
 	{
 		serialisator.deserialisate(objects);
-	}
-	if (action == "change")
-	{
-		int object_id = -1;
-		check_mouse_clicked_at_object(objects, object_id,window);
-		if (object_id != -1)
-		{
-			obj_manipulator.choose_obj(object_id);
-			obj_manipulator.change_obj_parameters(objects,object_id);
-		}
-		object_id = -1;
 	}
 	if (action == "rotate left")
 	{
