@@ -46,7 +46,6 @@ void ObjectManipulator::choose_obj(int id)
 }
 void ObjectManipulator::create_obj(vector<Entity *> & objects)
 {
-	cout << "START TO CREATE" << endl;
 	bool able_to_create = false;
 
 	Gui *gui = new Gui;
@@ -79,7 +78,6 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 
 		if (able_to_create && got_data)
 		{
-			cout << "WTF" << endl;
 			Entity * object = new Entity();
 			object->set_image(img_path.toAnsiString());
 			object->set_image_path(img_path.toAnsiString());
@@ -87,7 +85,6 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			
 			if (objects.size() == 0)
 			{
-				cout << "thos" << endl;
 				object->set_pos(100.0f, 100.0f);
 				object->set_id(0);
 			}
@@ -97,16 +94,13 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 				//so we have to check that
 				if (current_object_id == NULL)
 				{
-					cout <<"shit: " << endl;
 					object->set_pos(objects[current_object_id]->get_x() + moving_length, objects[current_object_id]->get_y());
 				}
 				else {
-					cout << "no" << endl;
 					object->set_pos(objects[objects.size()-1]->get_x() + moving_length, objects[objects.size() - 1]->get_y());
 				}
 
 				object->set_id(objects.size());
-				cout << object->get_id()<< " id"<<endl;
 			}
 			
 			
@@ -115,7 +109,6 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 
 
 			current_object_id = object->get_id();
-			cout << current_object_id << "dwdsdad   size:" << objects.size()<< endl;
 
 			objects.push_back(object);
 
@@ -152,25 +145,34 @@ void ObjectManipulator::rotate_obj(vector<Entity *> & objects, float angle)
 }
 void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction)
 {
-	float old_x_pos = objects[current_object_id]->get_x();
-	float old_y_pos = objects[current_object_id]->get_y();
+	//when we continue to made new level, we open programm
+	//and current object id will have zero value
+	//so we have to check that
 
-	if (direction == "up")
-	{	
-		objects[current_object_id]->set_pos(old_x_pos, old_y_pos - moving_length);
-	}
-	if (direction == "down")
+	if (objects.size() != 0 && current_object_id == NULL )
 	{
-		objects[current_object_id]->set_pos(old_x_pos, old_y_pos + moving_length);
+		cout << "shot" << endl;
+		choose_obj(objects.size() - 1);
 	}
-	if (direction == "left")
-	{
-		objects[current_object_id]->set_pos(old_x_pos - moving_length, old_y_pos);
-	}
-	if (direction == "right")
-	{
-		objects[current_object_id]->set_pos(old_x_pos + moving_length, old_y_pos);
-	}
+		float old_x_pos = objects[current_object_id]->get_x();
+		float old_y_pos = objects[current_object_id]->get_y();
+
+		if (direction == "up")
+		{
+				objects[current_object_id]->set_pos(old_x_pos, old_y_pos - moving_length);
+		}
+		if (direction == "down")
+		{
+				objects[current_object_id]->set_pos(old_x_pos, old_y_pos + moving_length);
+		}
+		if (direction == "left")
+		{
+				objects[current_object_id]->set_pos(old_x_pos - moving_length, old_y_pos);
+		}
+		if (direction == "right")
+		{
+				objects[current_object_id]->set_pos(old_x_pos + moving_length, old_y_pos);
+		}
 }
 void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects)
 {
@@ -268,6 +270,7 @@ void ObjectManipulator::change_obj_parameters(vector<Entity *> & objects, int & 
 }
 ObjectManipulator::ObjectManipulator()
 {
+	current_object_id = 0;
 	moving_length = 32;
 }
 
