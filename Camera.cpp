@@ -31,7 +31,13 @@ Camera::Camera()
 {
 
 }
+void Camera::move_to_last_object(vector<Entity*>& objects)
+{
+	float x = objects[objects.size()-1]->get_x();
+	float y = objects[objects.size()-1]->get_y();
 
+	view.setCenter(x, y);
+}
 
 Camera::~Camera()
 {

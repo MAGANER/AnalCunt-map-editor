@@ -21,8 +21,9 @@ void HotKeyProcessor::is_user_clicking()
 	bool right = !Keyboard::isKeyPressed(Keyboard::Right);
 	bool Q = !Keyboard::isKeyPressed(Keyboard::Q);
 	bool E = !Keyboard::isKeyPressed(Keyboard::E);
+	bool M = !Keyboard::isKeyPressed(Keyboard::M);
 
-	bool user_doesnt_click = escape &&  num3 && r && t
+	bool user_doesnt_click = escape &&  num3 && r && t && M
 		&& up && down && left && right && Q && num4 && E;
 	if (user_doesnt_click)
 	{
@@ -53,6 +54,10 @@ void HotKeyProcessor::get_action()
 		if (Keyboard::isKeyPressed(Keyboard::D))
 		{
 			action = "right";
+		}
+		if (Keyboard::isKeyPressed(Keyboard::M))
+		{
+			action = "move to last";
 		}
 
 		// object manipulation
@@ -173,6 +178,10 @@ void HotKeyProcessor::check_action(WindoW & window,  vector<Entity *> & objects,
 	if (action == "change last one")
 	{
 		obj_manipulator.change_obj_parameters(objects);
+	}
+	if (action == "move to last")
+	{
+		camera.move_to_last_object(objects);
 	}
 	action = "-1";
 }
