@@ -116,7 +116,10 @@ void Serialisator::serialisate(vector<Entity *> & objects)
 						objects[i]->get_y(),
 						objects[i]->get_image_path(),
 						objects[i]->get_type(),
-						objects[i]->get_rotation() };
+						objects[i]->get_rotation(),
+					    objects[i]->is_drawable(),
+					    objects[i]->get_width(),
+					    objects[i]->get_height()};
 				}
 				file << world;
 				file.close();

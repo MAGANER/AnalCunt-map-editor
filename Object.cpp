@@ -10,6 +10,25 @@ float Object::get_y()
 	sf::Vector2f pos = gobject_spr.getPosition();
 	return pos.y;
 }
+
+void Object::set_drawable_state(bool flag)
+{
+	drawable = flag;
+}
+bool Object::is_drawable()
+{
+	return drawable;
+}
+
+int Object::get_height()
+{
+	return gobject_spr.getTextureRect().height;
+}
+int Object::get_width()
+{
+	return gobject_spr.getTextureRect().width;
+}
+
 void Object::set_pos(float x, float y)
 {
 	gobject_spr.setPosition(x, y);

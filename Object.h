@@ -12,10 +12,17 @@ protected:
 	sf::Texture gobject_textr;
 	sf::Sprite gobject_spr;
 
-
+	bool drawable;
 public:
 	float get_x();
 	float get_y();
+
+	void set_drawable_state(bool flag);
+	bool is_drawable();
+
+	int get_width();
+	int get_height();
+
 	void set_image(string img);
 	void set_pos(float x, float y);
 	sf::Sprite returnSprite();

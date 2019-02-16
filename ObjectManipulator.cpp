@@ -68,8 +68,9 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 
 		String img_path = creating_menu->get_img_path();
 		String obj_type = creating_menu->get_obj_type();
+		String   drawable = creating_menu->get_drawble_state();
 
-		bool got_data = !(img_path.isEmpty() && obj_type.isEmpty());
+		bool got_data = !(img_path.isEmpty() && obj_type.isEmpty() && drawable.isEmpty());
 
 		if (Keyboard::isKeyPressed(Keyboard::Enter))
 		{
@@ -82,6 +83,10 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			object->set_image(img_path.toAnsiString());
 			object->set_image_path(img_path.toAnsiString());
 			object->set_type(obj_type.toAnsiString());
+		    
+			string drawable_state = drawable.toAnsiString();
+			bool  _drawable = atoi(drawable_state.c_str());
+			object->set_drawable_state(_drawable);
 			
 			if (objects.size() == 0)
 			{
@@ -104,7 +109,7 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			}
 			
 			
-			creating_menu->set_cash(obj_type, img_path);
+			creating_menu->set_cash(obj_type, img_path,drawable_state);
 			creating_menu->save_cash();
 
 
