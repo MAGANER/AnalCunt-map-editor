@@ -1,7 +1,8 @@
-#pragma once
-#include"stdafx.h"
+#ifndef WINDOW_H
+#define WINDOW_H
 #include<vector>
-#include"Entity.h"
+#include"stdafx.h"
+#include"object/Entity.h"
 
 class WindoW
 {
@@ -37,4 +38,4 @@ public:
 	WindoW(int width, int height, string title, Gui* & gui);
 	~WindoW();
 };
-
+#endif // WINDOW_H

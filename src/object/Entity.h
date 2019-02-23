@@ -1,6 +1,7 @@
-#pragma once
+#ifndef ENTITY_H
+#define ENTITY_H
 #include"Object.h"
-#include"json.hpp"
+#include"json/json.hpp"
 
 using json = nlohmann::json;
 
@@ -23,9 +24,9 @@ public:
 	void set_type(string type);
 	void set_rotation(float angle);
 	float get_rotation();
-	
+
 
 	Entity();
 	virtual ~Entity();
 };
-
+#endif // ENTITY_H

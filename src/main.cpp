@@ -1,12 +1,11 @@
-#include"stdafx.h"
-#include<conio.h>
-#include"HotKeyProcessor.h"
-#include"WindoW.h"
-#include"Entity.h"
 #include<vector>
-#include"Camera.h"
-#include"myMenuBar.h"
-#include"ObjectManipulator.h"
+#include"stdafx.h"
+#include"logic/HotKeyProcessor.h"
+#include"logic/ObjectManipulator.h"
+#include"window/WindoW.h"
+#include"window/Camera.h"
+#include"object/Entity.h"
+#include"gui/myMenuBar.h"
 
 int main()
 {

@@ -1,6 +1,7 @@
-#pragma once
+#ifndef ABOUTWINDOW_H
+#define ABOUTHWINDOW_H
 #include"stdafx.h"
-#include"WindoW.h"
+#include"window/WindoW.h"
 
 class AboutWindow
 {
@@ -17,4 +18,4 @@ public:
 	AboutWindow();
 	~AboutWindow();
 };
-
+#endif // ABOUTWINDOW_H

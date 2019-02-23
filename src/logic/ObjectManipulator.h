@@ -1,10 +1,11 @@
-#pragma once
+#ifndef OBJECTMANIPULATOR_H
+#define OBJECTMANIPULATOR_H
 #include"stdafx.h"
-#include"Entity.h"
-#include"WindoW.h"
-#include"ObjectCreatingMenu.h"
-#include"ObjectParameterWindow.h"
-#include"Moving_length_menu.h"
+#include"object/Entity.h"
+#include"window/WindoW.h"
+#include"gui/object_windows/ObjectCreatingMenu.h"
+#include"gui/object_windows/ObjectParameterWindow.h"
+#include"gui/object_windows/Moving_length_menu.h"
 
 class ObjectManipulator
 {
@@ -24,4 +25,4 @@ public:
 	ObjectManipulator();
 	~ObjectManipulator();
 };
-
+#endif // OBJECTMANIPULATOR_H

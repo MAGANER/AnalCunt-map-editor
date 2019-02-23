@@ -1,5 +1,6 @@
 // this is common class of every game object like player, enemy etc
-#pragma once
+#ifndef OBJECT_H
+#define OBJECT_H
 #include"stdafx.h"
 
 class Object
@@ -29,4 +30,4 @@ public:
 	Object();
 	virtual ~Object();
 };
-
+#endif // OBJECT_H

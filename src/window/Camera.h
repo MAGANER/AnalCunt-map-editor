@@ -1,6 +1,8 @@
-#pragma once
+#ifndef CAMERA_H
+#define CAMERA_H
 #include"stdafx.h"
-#include"Entity.h"
+#include"object/Entity.h"
+
 class Camera
 {
 private:
@@ -14,4 +16,4 @@ public:
 	Camera();
 	~Camera();
 };
-
+#endif // CAMERA_H

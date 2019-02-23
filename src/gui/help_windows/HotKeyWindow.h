@@ -1,6 +1,7 @@
-#pragma once
+#ifndef HOTKEYWINDOW_H
+#define HOTKEYWINDOW_H
 #include"stdafx.h"
-#include"WindoW.h"
+#include"window/WindoW.h"
 
 class HotKeyWindow
 {
@@ -18,4 +19,4 @@ public:
 	HotKeyWindow();
 	~HotKeyWindow();
 };
-
+#endif // HOTKEYWINDOW_H

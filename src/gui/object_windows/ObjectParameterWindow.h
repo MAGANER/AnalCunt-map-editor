@@ -1,6 +1,7 @@
-#pragma once
+#ifndef OBJECTPARAMETERWINDOW_H
+#define OBJECTPARAMETERWINDOW_H
 #include"stdafx.h"
-#include"Entity.h"
+#include"object/Entity.h"
 
 class ObjectParameterWindow
 {
@@ -39,4 +40,4 @@ public:
 	ObjectParameterWindow(Gui* & gui, bool & able_to_change);
 	~ObjectParameterWindow();
 };
-
+#endif // OBJECTPARAMETERWINDOW_H

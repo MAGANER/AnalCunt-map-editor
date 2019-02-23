@@ -1,6 +1,7 @@
-#pragma once
+#ifndef OBJECTCREATINGMENU_H
+#define OBJECTCREATINGMENU_H
 #include"stdafx.h"
-#include"ObjectManipulator.h"
+#include"logic/ObjectManipulator.h"
 
 class ObjectCreatingMenu
 {
@@ -35,4 +36,4 @@ public:
 
 	~ObjectCreatingMenu();
 };
-
+#endif // OBJECTCREATINGMENU_H

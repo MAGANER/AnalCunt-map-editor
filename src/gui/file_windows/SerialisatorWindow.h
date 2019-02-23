@@ -1,5 +1,7 @@
-#pragma once
+#ifndef SERIALISATORWINDOW_H
+#define SERIALISATORWINDOW_H
 #include"stdafx.h"
+
 class SerialisatorWindow
 {
 private:
@@ -11,7 +13,7 @@ private:
 	Button::Ptr accept;
 public:
 	String get_path();
-	SerialisatorWindow(Gui* & gui, bool & ok); 
+	SerialisatorWindow(Gui* & gui, bool & ok);
 	~SerialisatorWindow();
 };
-
+#endif // SERIALISATORWINDOW_H

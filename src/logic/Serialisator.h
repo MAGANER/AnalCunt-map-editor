@@ -1,11 +1,12 @@
-#pragma once
-#include"json.hpp"
-#include"stdafx.h"
-#include"Entity.h"
+#ifndef SERIALISATOR_H
+#define SERIALISATOR_H
 #include <stdlib.h>
 #include<string>
-#include"WindoW.h"
-#include"SerialisatorWindow.h"
+#include"stdafx.h"
+#include"json/json.hpp"
+#include"object/Entity.h"
+#include"window/WindoW.h"
+#include"gui/file_windows/SerialisatorWindow.h"
 
 using json = nlohmann::json;
 
@@ -19,4 +20,4 @@ public:
 	Serialisator();
 	virtual ~Serialisator();
 };
-
+#endif // SERIALISATOR_H

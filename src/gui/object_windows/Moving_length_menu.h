@@ -1,7 +1,6 @@
-#pragma once
-#include"TGUI\TGUI.hpp"
-
-using namespace tgui;
+#ifndef MOVINGLENGTHMENU_H
+#define MOVINGLENGTHMENU_H
+#include"stdafx.h"
 
 class Moving_length_menu
 {
@@ -20,4 +19,4 @@ public:
 	Moving_length_menu(Gui* & gui, bool & ok);
 	~Moving_length_menu();
 };
-
+#endif // MOVINGLENGTHMENU_H
