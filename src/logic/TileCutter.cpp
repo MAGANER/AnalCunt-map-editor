@@ -8,7 +8,7 @@ TileCutter::TileCutter(float tile_width, float tile_height)
 
     cutting_area_rect = new RectangleShape(size);
     cutting_area_rect->setFillColor(*filling_color);
-    cutting_area_rect->setPosition(10.0f,10.0f);
+    cutting_area_rect->setPosition(0.0f,0.0f);
 }
 
 TileCutter::~TileCutter()

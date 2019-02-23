@@ -220,7 +220,7 @@ void ObjectManipulator::cut_tile(vector<Entity *> & objects)
 
     auto last_object_ptr  = objects.end();
     last_object_ptr-=1; //get last object
-    (*last_object_ptr)->set_pos(10.0f,10.0f);
+    (*last_object_ptr)->set_pos(0.0f,0.0f);
 
 
 	Gui *gui = new Gui;
