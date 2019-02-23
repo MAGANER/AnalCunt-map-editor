@@ -44,11 +44,18 @@ void WindoW::draw(Entity object)
 {
 	win->draw(object.returnSprite());
 }
+void WindoW::draw(Entity* object)
+{
+    win->draw(object->returnSprite());
+}
 void WindoW::draw(sf::Text text)
 {
 	win->draw(text);
 }
-
+void WindoW::draw(RectangleShape rect)
+{
+    win->draw(rect);
+}
 void WindoW::close()
 {
 	win->close();

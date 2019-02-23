@@ -30,8 +30,10 @@ public:
 	void set_view(View & view);
 
 	void draw(vector<Entity *> & objects);
+	void draw(Entity* object);
 	void draw(Entity object);
 	void draw(sf::Text text);
+	void draw(RectangleShape  rect);
 
 	WindoW(int width, int height, string title);
 	WindoW(int width, int height, string title, Gui & gui);
