@@ -8,7 +8,7 @@ private:
 public:
 	void move(string direction);
 	void reset(int width, int height);
-	View get_view();
+	View& get_view();
 
 	void move_to_last_object(vector<Entity*>& objects);
 	Camera();

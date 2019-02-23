@@ -23,7 +23,7 @@ void Camera::reset(int width, int height)
 {
 	view.reset(sf::FloatRect(0, 0, width, height));
 }
-View Camera::get_view()
+View& Camera::get_view()
 {
 	return view;
 }
