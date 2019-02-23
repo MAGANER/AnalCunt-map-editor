@@ -9,7 +9,6 @@ HotKeyProcessor::HotKeyProcessor()
 }
 void HotKeyProcessor::is_user_clicking()
 {
-	bool C = !Keyboard::isKeyPressed(Keyboard::C);
 	bool r = !(Keyboard::isKeyPressed(Keyboard::R));
 	bool t = !Keyboard::isKeyPressed(Keyboard::T);
 	bool escape = !Keyboard::isKeyPressed(Keyboard::Escape);

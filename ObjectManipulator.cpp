@@ -26,7 +26,7 @@ void ObjectManipulator::change_moving_length()
 			ok = false;
 			window->close();
 		}
-		else 
+		else
 		{
 			ok = false;
 		}
@@ -51,14 +51,14 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 	Gui *gui = new Gui;
 	WindoW *window = new WindoW(400,400,"create object...",gui);
 	ObjectCreatingMenu* creating_menu=  new ObjectCreatingMenu(gui,able_to_create);
-	
+
 
 	bool use_cash = false;
 	while (window->is_open())
 	{
 		window->check_event(gui);
 
-		
+
 		if (objects.size() != 0 && !use_cash)
 		{
 			creating_menu->load_cash();
@@ -83,11 +83,11 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			object->set_image(img_path.toAnsiString());
 			object->set_image_path(img_path.toAnsiString());
 			object->set_type(obj_type.toAnsiString());
-		    
+
 			string drawable_state = drawable.toAnsiString();
 			bool  _drawable = atoi(drawable_state.c_str());
 			object->set_drawable_state(_drawable);
-			
+
 			if (objects.size() == 0)
 			{
 				object->set_pos(100.0f, 100.0f);
@@ -97,7 +97,7 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 				//when we continue to made new level, we open programm
 				//and this variable will have zero value
 				//so we have to check that
-				if (current_object_id == NULL)
+				if (current_object_id == 0)
 				{
 					object->set_pos(objects[current_object_id]->get_x() + moving_length, objects[current_object_id]->get_y());
 				}
@@ -107,8 +107,8 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 
 				object->set_id(objects.size());
 			}
-			
-			
+
+
 			creating_menu->set_cash(obj_type, img_path,drawable_state);
 			creating_menu->save_cash();
 
@@ -122,7 +122,7 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
 			able_to_create = false;
 			use_cash = false;
 		}
-	
+
 
 		window->clear(sf::Color(74, 72, 75));
 		gui->draw();
@@ -146,7 +146,7 @@ void ObjectManipulator::rotate_obj(vector<Entity *> & objects, float angle)
 			objects[i]->set_rotation(objects[i]->get_rotation()+ angle);
 		}
 	}
-	
+
 }
 void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction)
 {
@@ -154,7 +154,7 @@ void ObjectManipulator::move_obj(vector<Entity *> & objects, string direction)
 	//and current object id will have zero value
 	//so we have to check that
 
-	if (objects.size() != 0 && current_object_id == NULL )
+	if (objects.size() != 0 && current_object_id == 0 )
 	{
 		cout << "shot" << endl;
 		choose_obj(objects.size() - 1);

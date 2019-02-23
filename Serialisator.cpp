@@ -25,7 +25,6 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
 		{
 			string file_path = path.toAnsiString();
 			ifstream file;
-			Entity * object = new Entity();
 
 			if (file_path != "n")
 			{
