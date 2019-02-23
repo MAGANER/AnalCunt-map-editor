@@ -30,7 +30,7 @@ private:
 	Button::Ptr change;
 
 public:
-	void set_parameters(vector<Entity*> & objects, int & objects_id);
+	void set_parameters(vector<Entity*> & objects, int   object_id);
 
 	string get_id();
 	string get_type();

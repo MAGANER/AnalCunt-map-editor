@@ -17,7 +17,7 @@ string ObjectParameterWindow::get_type()
 	return edb_type->getText().toAnsiString();
 }
 
-void ObjectParameterWindow::set_parameters(vector<Entity *> & objects, int & object_id)
+void ObjectParameterWindow::set_parameters(vector<Entity *> & objects, int object_id)
 {
 	for (size_t i = 0; i < objects.size(); ++i)
 	{
@@ -25,7 +25,7 @@ void ObjectParameterWindow::set_parameters(vector<Entity *> & objects, int & obj
 		{
 			string id = to_string(object_id);
 			edb_id->setText(id);
-	
+
 			string type = to_string(objects[i]->get_type());
 			edb_type->setText(type);
 
