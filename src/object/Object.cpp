@@ -29,6 +29,10 @@ int Object::get_width()
 	return gobject_spr.getTextureRect().width;
 }
 
+void Object::set_texture_rect(IntRect & rect)
+{
+    gobject_spr.setTextureRect(rect);
+}
 void Object::set_pos(float x, float y)
 {
 	gobject_spr.setPosition(x, y);

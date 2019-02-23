@@ -24,6 +24,7 @@ public:
 	int get_width();
 	int get_height();
 
+	void set_texture_rect(IntRect & rect);
 	void set_image(string img);
 	void set_pos(float x, float y);
 	sf::Sprite returnSprite();
