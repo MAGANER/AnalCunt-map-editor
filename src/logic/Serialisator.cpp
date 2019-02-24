@@ -44,14 +44,16 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
 
                     cout << "good" << endl;
                     int id = object_counter;
-                    float x           = world["world"][to_string(object_counter)].at(0);
-                    float y           = world["world"][to_string(object_counter)].at(1);
-                    string image      = world["world"][to_string(object_counter)].at(2);
-                    string type       = world["world"][to_string(object_counter)].at(3);
-                    float rotation    = world["world"][to_string(object_counter)].at(4);
-                    bool  is_drawable = world["world"][to_string(object_counter)].at(5);
-                    float width       = world["world"][to_string(object_counter)].at(6);
-                    float height      = world["world"][to_string(object_counter)].at(7);
+                    float x            = world["world"][to_string(object_counter)].at(0);
+                    float y            = world["world"][to_string(object_counter)].at(1);
+                    string image       = world["world"][to_string(object_counter)].at(2);
+                    string type        = world["world"][to_string(object_counter)].at(3);
+                    float rotation     = world["world"][to_string(object_counter)].at(4);
+                    bool  is_drawable  = world["world"][to_string(object_counter)].at(5);
+                    float width        = world["world"][to_string(object_counter)][6].at(0);
+                    float height       = world["world"][to_string(object_counter)][6].at(1);
+                    float txtur_rect_x = world["world"][to_string(object_counter)][6].at(2);
+                    float txtur_rect_y = world["world"][to_string(object_counter)][6].at(3);
 
                     object->set_pos(x, y);
                     object->set_id(id);
@@ -63,7 +65,11 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
                     object->set_width(width);
                     object->set_height(height);
 
+                    IntRect* rect = new IntRect(txtur_rect_x,txtur_rect_y,width,height);
+                    cout<<x <<" "<<y<<endl;
+                    object->set_texture_rect(*rect);
                     objects.push_back(object);
+                    delete rect;
                     ++object_counter;
                 }
                 else
@@ -119,13 +125,18 @@ void Serialisator::serialisate(vector<Entity *> & objects)
             while(object != objects.end())
             {
                 world["world"][to_string((*object)->get_id())] = { (*object)->get_x(),
-                                                                    (*object)->get_y(),
-                                                                    (*object)->get_image_path(),
-                                                                    (*object)->get_type(),
-                                                                    (*object)->get_rotation(),
-                                                                    (*object)->is_drawable(),
-                                                                    (*object)->get_width(),
-                                                                    (*object)->get_height()};
+                                                                   (*object)->get_y(),
+                                                                   (*object)->get_image_path(),
+                                                                   (*object)->get_type(),
+                                                                   (*object)->get_rotation(),
+                                                                   (*object)->is_drawable(),
+                                                                    ["texture_rect"]=
+                                                                       {(*object)->get_width(),
+                                                                        (*object)->get_height(),
+                                                                        (*object)->get_texture_rect().left,
+                                                                        (*object)->get_texture_rect().top
+                                                                       }
+                                                                };
 
                 object++;
             }
