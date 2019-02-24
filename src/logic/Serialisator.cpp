@@ -115,8 +115,6 @@ void Serialisator::serialisate(vector<Entity *> & objects)
 
             file.open(file_path, ios::app);
 
-
-
             auto object = objects.begin();
             while(object != objects.end())
             {
