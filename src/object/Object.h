@@ -20,6 +20,8 @@ public:
 	float get_x();
 	float get_y();
 
+    IntRect& get_texture_rect();
+
 	void set_drawable_state(bool flag);
 	bool is_drawable();
 
