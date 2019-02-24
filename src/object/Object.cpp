@@ -22,13 +22,24 @@ bool Object::is_drawable()
 
 int Object::get_height()
 {
-	return gobject_spr.getTextureRect().height;
+	height = gobject_spr.getTextureRect().height;
+	return height;
 }
 int Object::get_width()
 {
-	return gobject_spr.getTextureRect().width;
+	width =  gobject_spr.getTextureRect().width;
+	return width;
 }
 
+
+void Object::set_width(int width)
+{
+    this->width = width;
+}
+void Object::set_height(int height)
+{
+    this->height = height;
+}
 void Object::set_texture_rect(IntRect & rect)
 {
     gobject_spr.setTextureRect(rect);
@@ -52,7 +63,8 @@ void Object::set_image(string img)
 
 Object::Object()
 {
-
+    height = gobject_spr.getTextureRect().height;
+    width  = gobject_spr.getTextureRect().width;
 }
 
 Object::~Object()

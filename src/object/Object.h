@@ -14,6 +14,8 @@ protected:
 	sf::Sprite gobject_spr;
 
 	bool drawable;
+
+	int width, height;
 public:
 	float get_x();
 	float get_y();
@@ -23,6 +25,9 @@ public:
 
 	int get_width();
 	int get_height();
+
+    void set_width(int width);
+    void set_height(int height);
 
 	void set_texture_rect(IntRect & rect);
 	void set_image(string img);
