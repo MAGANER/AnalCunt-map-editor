@@ -13,7 +13,6 @@ class ObjectManipulator
 {
 private:
 	int moving_length;
-	int current_object_id;
 
     void create(vector<Entity *> & objects);
     void cut_tile(vector<Entity *> & objects);
@@ -24,7 +23,6 @@ public:
 	void move_obj(vector<Entity *> & objects,string direction);
 	void rotate_obj(vector<Entity *> & objects,float angle);
 	void change_obj_parameters(vector<Entity *> & objects);
-	void choose_obj(int id);
 	void change_moving_length();
 
 	ObjectManipulator();
