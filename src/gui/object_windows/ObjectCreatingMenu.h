@@ -2,10 +2,11 @@
 #define OBJECTCREATINGMENU_H
 #include"stdafx.h"
 #include"logic/ObjectManipulator.h"
-
+#include"logic/Cash.h"
 class ObjectCreatingMenu
 {
 private:
+    Cash *cash;
 	Theme theme;
 
 	Label::Ptr lbl_enter_drawble_state;
@@ -22,6 +23,8 @@ private:
 
 	String last_object_type, last_object_image_path, last_object_drawable_state;
 public:
+
+
 	ObjectCreatingMenu(Gui* & gui, bool & able_to_create);
 
 	String get_obj_type();

@@ -3,54 +3,24 @@
 
 void ObjectCreatingMenu::set_cash(String type,String image_path,String drawable_state)
 {
-	last_object_type = type;
-	last_object_image_path = image_path; 
-	last_object_drawable_state = drawable_state;
+    cash->add(type.toAnsiString());
+    cash->add(image_path.toAnsiString());
+    cash->add(drawable_state.toAnsiString());
 }
 void ObjectCreatingMenu::use_cash()
 {
-	edb_enter_type->setText(last_object_type);
-	edb_enter_img_path->setText(last_object_image_path);
-	edb_enter_drawable_state->setText(last_object_drawable_state);
+	edb_enter_type->setText(cash->get(0));
+	edb_enter_img_path->setText(cash->get(1));
+	edb_enter_drawable_state->setText(cash->get(2));
 }
 
 void ObjectCreatingMenu::save_cash()
 {
-	ofstream file;
-	file.open("data/cash.txt");
-	file.clear();
-	if (!file)
-	{
-		cout << "wtf" << endl;
-	}
-
-	file << last_object_type.toAnsiString();
-	file << endl;
-	file << last_object_image_path.toAnsiString();
-	file << endl;
-	file << last_object_drawable_state.toAnsiString();
-	file.close();
+    cash->save();
 }
 void ObjectCreatingMenu::load_cash()
 {
-	ifstream file;
-	file.open("data/cash.txt");
-	if (!file)
-	{
-		cout << "wtf" << endl;
-	}
-
-	string type, img_path, drawable_state;
-	file >> type;
-	file >> img_path;
-	file >> drawable_state;
-	file.close();
-
-	last_object_type = type;
-	last_object_image_path = img_path;
-	last_object_drawable_state = drawable_state;
-	cout << last_object_image_path.toAnsiString() << endl;
-	cout << last_object_type.toAnsiString() << endl;
+     cash->load();
 }
 
 
@@ -69,6 +39,9 @@ String ObjectCreatingMenu::get_drawble_state()
 
 ObjectCreatingMenu::ObjectCreatingMenu(Gui* & gui, bool & able_to_create)
 {
+    cash = new Cash("data/creating_cash.txt");
+
+
 	theme.load("themes/Black.txt");
 
 	lbl_enter_type = Label::create();
@@ -115,7 +88,7 @@ ObjectCreatingMenu::ObjectCreatingMenu(Gui* & gui, bool & able_to_create)
 	edb_enter_drawable_state->setSize(800, 100);
 	edb_enter_drawable_state->setTextSize(36);
 	gui->add(edb_enter_drawable_state);
-	
+
 
 
 	create = Button::create();
@@ -131,4 +104,5 @@ ObjectCreatingMenu::ObjectCreatingMenu(Gui* & gui, bool & able_to_create)
 
 ObjectCreatingMenu::~ObjectCreatingMenu()
 {
+    delete cash;
 }
