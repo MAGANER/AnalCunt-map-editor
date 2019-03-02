@@ -31,11 +31,14 @@ int Object::get_width()
 	return width;
 }
 
-IntRect& Object::get_texture_rect()
+IntRect Object::get_texture_rect()
 {
-    gobject_spr.getTextureRect();
+   return gobject_spr.getTextureRect();
 }
-
+IntRect Object::get_physical_body()
+{
+    return physical_body;
+}
 void Object::set_width(int width)
 {
     this->width = width;
@@ -47,6 +50,10 @@ void Object::set_height(int height)
 void Object::set_texture_rect(IntRect & rect)
 {
     gobject_spr.setTextureRect(rect);
+}
+void Object::set_physical_body(IntRect & rect)
+{
+    physical_body = rect;
 }
 
 void Object::set_pos(float x, float y)

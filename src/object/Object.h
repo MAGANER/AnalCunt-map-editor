@@ -16,11 +16,14 @@ protected:
 	bool drawable;
 
 	int width, height;
+
+	IntRect physical_body;
 public:
 	float get_x();
 	float get_y();
 
-    IntRect& get_texture_rect();
+    IntRect get_texture_rect();
+    IntRect get_physical_body();
 
 	void set_drawable_state(bool flag);
 	bool is_drawable();
@@ -32,6 +35,7 @@ public:
     void set_height(int height);
 
 	void set_texture_rect(IntRect & rect);
+	void set_physical_body(IntRect& rect);
 	void set_image(string img);
 	void set_pos(float x, float y);
 	sf::Sprite returnSprite();
