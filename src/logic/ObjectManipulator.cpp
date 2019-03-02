@@ -246,14 +246,29 @@ void ObjectManipulator::create(vector<Entity *> & objects)
 void ObjectManipulator::cut_tile(vector<Entity *> & objects)
 {
     bool able_to_cut = false; // cut tile if that is true
-
+    bool used_cash = false;      // load and set cash if that is false
 
     auto last_object  = --objects.end();
     (*last_object)->set_pos(0.0f,0.0f);
 
 
-	Gui *gui = new Gui;
-    TileCutter * cutter = new TileCutter((*last_object)->get_width(),(*last_object)->get_height());
+    Gui *gui = new Gui;
+
+    TileCuttingWindow* cutting_menu=  new TileCuttingWindow(gui,able_to_cut,"cut!","cut rate:","data/tile_cutting_cash.txt");
+	// set position, relating to object size
+	cutting_menu->set_labels_position((*last_object)->get_width()+(*last_object)->get_x());
+
+    // load cash of last object
+    // and set it
+    if (objects.size() != 0 && !used_cash)
+    {
+        cutting_menu->load_cash();
+        cutting_menu->use_cash();
+        used_cash = true;
+    }
+
+
+    TileCutter * cutter = new TileCutter(cutting_menu->get_width(),cutting_menu->get_height());
 
     // set window size, relating to object size
     // cos object must be in the window
@@ -262,13 +277,16 @@ void ObjectManipulator::cut_tile(vector<Entity *> & objects)
 	WindoW *window = new WindoW(window_width,window_height,"cut tile...",gui);
 
 
-	TileCuttingWindow* cutting_menu=  new TileCuttingWindow(gui,able_to_cut,"cut!","cut rate:");
-	// set position, relating to object size
-	cutting_menu->set_labels_position((*last_object)->get_width()+(*last_object)->get_x());
+
+
 
     while(window->is_open())
     {
         window->check_event(gui);
+
+
+
+
 
         float speed = cutting_menu->get_cut_rate();
 
@@ -338,6 +356,16 @@ void ObjectManipulator::cut_tile(vector<Entity *> & objects)
             IntRect rect(position.x,position.y,size.x,size.y);
             (*last_object)->set_texture_rect(rect);
 
+            //set cash data and save it
+            String str_width    = to_string(size.x);
+            String str_height   = to_string(size.y);
+            String str_cut_rate = to_string(cutting_menu->get_cut_rate());
+
+            cutting_menu->set_cash(str_width,str_height,str_cut_rate);
+            cutting_menu->save_cash();
+            used_cash = false;
+
+
             window->close();
         }
 
@@ -385,7 +413,7 @@ void ObjectManipulator::set_new_obj_near_to_last(vector<Entity *> & objects)
 void ObjectManipulator::set_physical_body(vector<Entity*>& objects)
 {
     bool able_to_set = false;
-
+    bool used_cash = false;      // load and set cash if that is false
 
     auto last_object  = --objects.end();
     (*last_object)->set_pos(0.0f,0.0f);
@@ -401,13 +429,22 @@ void ObjectManipulator::set_physical_body(vector<Entity*>& objects)
 	WindoW *window = new WindoW(window_width,window_height,"set physical body...",gui);
 
 
-	TileCuttingWindow* cutting_menu=  new TileCuttingWindow(gui,able_to_set,"set!","set rate:");
+	TileCuttingWindow* cutting_menu=  new TileCuttingWindow(gui,able_to_set,"set!","set rate:","data/body_setting_cash.txt");
 	// set position, relating to object size
 	cutting_menu->set_labels_position((*last_object)->get_width()+(*last_object)->get_x());
 
     while(window->is_open())
     {
         window->check_event(gui);
+
+        // load cash of last object
+		// and set it
+		if (objects.size() != 0 && !used_cash)
+		{
+			cutting_menu->load_cash();
+			cutting_menu->use_cash();
+			used_cash = true;
+		}
 
         float speed = cutting_menu->get_cut_rate();
 
@@ -476,6 +513,18 @@ void ObjectManipulator::set_physical_body(vector<Entity*>& objects)
             // only this rect will be physical body
             IntRect rect(position.x,position.y,size.x,size.y);
             (*last_object)->set_physical_body(rect);
+
+            //set cash and save it
+            //set cash data and save it
+            String str_width    = to_string(size.x);
+            String str_height   = to_string(size.y);
+            String str_set_rate = to_string(cutting_menu->get_cut_rate());
+
+            cutting_menu->set_cash(str_width,str_height,str_set_rate);
+            cutting_menu->save_cash();
+            used_cash = false;
+
+
 
             window->close();
         }
