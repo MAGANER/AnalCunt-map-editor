@@ -55,6 +55,12 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
                     float txtur_rect_x = world["world"][to_string(object_counter)][6].at(2);
                     float txtur_rect_y = world["world"][to_string(object_counter)][6].at(3);
 
+                    //physical body parameters
+                    float body_width   = world["world"][to_string(object_counter)][7].at(0);
+                    float body_height  = world["world"][to_string(object_counter)][7].at(1);
+                    float body_x_pos   = world["world"][to_string(object_counter)][7].at(2);
+                    float body_y_pos   = world["world"][to_string(object_counter)][7].at(3);
+
                     object->set_pos(x, y);
                     object->set_id(id);
                     object->set_image(image);
@@ -65,11 +71,15 @@ void Serialisator::deserialisate(vector<Entity *> & objects)
                     object->set_width(width);
                     object->set_height(height);
 
-                    IntRect* rect = new IntRect(txtur_rect_x,txtur_rect_y,width,height);
-                    cout<<x <<" "<<y<<endl;
+                    IntRect* rect  = new IntRect(txtur_rect_x,txtur_rect_y,width,height);
                     object->set_texture_rect(*rect);
-                    objects.push_back(object);
                     delete rect;
+
+                    IntRect * body = new IntRect(body_x_pos,body_y_pos,body_width,body_height);
+                    object->set_physical_body(*body);
+                    delete body;
+
+                    objects.push_back(object);
                     ++object_counter;
                 }
                 else
@@ -135,6 +145,13 @@ void Serialisator::serialisate(vector<Entity *> & objects)
                                                                         (*object)->get_height(),
                                                                         (*object)->get_texture_rect().left,
                                                                         (*object)->get_texture_rect().top
+                                                                       },
+                                                                    ["physical_body"]=
+                                                                       {
+                                                                        (*object)->get_physical_body().width,
+                                                                        (*object)->get_physical_body().height,
+                                                                        (*object)->get_physical_body().left,
+                                                                        (*object)->get_physical_body().top
                                                                        }
                                                                 };
 
