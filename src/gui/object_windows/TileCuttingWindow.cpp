@@ -1,7 +1,8 @@
 #include "TileCuttingWindow.h"
 
-TileCuttingWindow::TileCuttingWindow(Gui* & gui, bool & able_to_cut, String button_name, String enter_field_name)
+TileCuttingWindow::TileCuttingWindow(Gui* & gui, bool & able_to_cut, String button_name, String enter_field_name, string cash_path)
 {
+    cash = new Cash(cash_path);
     theme.load("themes/Black.txt");
 
     width = Label::create();
@@ -67,5 +68,44 @@ void TileCuttingWindow::update_labels_values()
 {
     height->setText("height:"+to_string(height_value));
     width->setText("width:"+to_string(width_value));
+}
+void TileCuttingWindow::set_cash(String width, String height, String cut_rate)
+{
+    cash->add(width.toAnsiString());
+    cash->add(height.toAnsiString());
+    cash->add(cut_rate.toAnsiString());
+}
+void TileCuttingWindow::use_cash()
+{
+    if(!cash->_is_empty())
+    {
+        width_value  = atoi(cash->get(0).c_str());
+        cout<<width_value<<endl;
+        height_value = atoi(cash->get(1).c_str());
+
+        lbl_cut_rate->setText(cash->get(2));
+        edb_cut_rate->setText(lbl_cut_rate->getText());
+
+        update_labels_values();
+    }
+}
+
+void TileCuttingWindow::save_cash()
+{
+    cash->save();
+}
+void TileCuttingWindow::load_cash()
+{
+    cash->load();
+}
+
+
+int TileCuttingWindow::get_width()
+{
+    return width_value;
+}
+int TileCuttingWindow::get_height()
+{
+    return height_value;
 }
 
