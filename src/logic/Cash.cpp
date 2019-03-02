@@ -62,6 +62,12 @@ void Cash::add(string new_data)
 }
 
 
+bool Cash::_is_empty()
+{
+    return !data.empty();
+}
+
+
 
 
 

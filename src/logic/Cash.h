@@ -20,5 +20,7 @@ public:
     void save();
     void add(string new_data);
     string get(int elem_id);
+
+    bool _is_empty();
 };
 #endif // CASH_H
