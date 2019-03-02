@@ -88,6 +88,7 @@ void TileCuttingWindow::use_cash()
 
         update_labels_values();
     }
+
 }
 
 void TileCuttingWindow::save_cash()

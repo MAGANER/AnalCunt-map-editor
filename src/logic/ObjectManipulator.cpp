@@ -363,7 +363,9 @@ void ObjectManipulator::cut_tile(vector<Entity *> & objects)
 
             cutting_menu->set_cash(str_width,str_height,str_cut_rate);
             cutting_menu->save_cash();
-            used_cash = false;
+
+            able_to_cut = false;
+            used_cash   = false;
 
 
             window->close();
@@ -522,7 +524,9 @@ void ObjectManipulator::set_physical_body(vector<Entity*>& objects)
 
             cutting_menu->set_cash(str_width,str_height,str_set_rate);
             cutting_menu->save_cash();
-            used_cash = false;
+
+            able_to_set = false;
+            used_cash   = false;
 
 
 

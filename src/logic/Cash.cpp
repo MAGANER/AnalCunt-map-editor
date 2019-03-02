@@ -17,6 +17,7 @@ string Cash::get(int elem_id)
 void Cash::load()
 {
     ifstream loader(path);
+
     if(!loader)
     {
         cout<<"can not load cash!"<<endl;
@@ -51,8 +52,6 @@ void Cash::save()
         savior<<endl;
         ++data_elem;
     }
-
-
 
     savior.close();
 }
