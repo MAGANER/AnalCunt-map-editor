@@ -1,6 +1,6 @@
 #include "TileCuttingWindow.h"
 
-TileCuttingWindow::TileCuttingWindow(Gui* & gui, bool & able_to_cut)
+TileCuttingWindow::TileCuttingWindow(Gui* & gui, bool & able_to_cut, String button_name, String enter_field_name)
 {
     theme.load("themes/Black.txt");
 
@@ -18,7 +18,7 @@ TileCuttingWindow::TileCuttingWindow(Gui* & gui, bool & able_to_cut)
 
     lbl_cut_rate = Label::create();
 	lbl_cut_rate->setRenderer(theme.getRenderer("Label"));
-	lbl_cut_rate->setText("cut rate:");
+	lbl_cut_rate->setText(enter_field_name);
 	lbl_cut_rate->setTextSize(36);
 	gui->add(lbl_cut_rate);
 
@@ -30,7 +30,7 @@ TileCuttingWindow::TileCuttingWindow(Gui* & gui, bool & able_to_cut)
 
 	cut = Button::create();
 	cut->setRenderer(theme.getRenderer("Button"));
-	cut->setText("cut!");
+	cut->setText(button_name);
 	cut->setTextSize(36);
 	cut->setSize(200, 150);
 	cut->connect("pressed", [&]() {able_to_cut = true; });

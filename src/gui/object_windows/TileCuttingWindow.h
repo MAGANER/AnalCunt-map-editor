@@ -2,6 +2,10 @@
 #define TILECUTTINGWINDOW_H
 #include"stdafx.h"
 
+/*
+  it is used to cutter tile from tile map,
+  but also this is needed to set physical body.
+*/
 class TileCuttingWindow
 {
 private:
@@ -18,7 +22,7 @@ private:
 
     Button::Ptr cut;
 public:
-    TileCuttingWindow(Gui* & gui, bool & able_to_cut);
+    TileCuttingWindow(Gui* & gui, bool & able_to_cut, String button_name, String enter_field_name);
     ~TileCuttingWindow();
 
     float get_cut_rate();
