@@ -51,6 +51,7 @@ void ObjectManipulator::create_obj(vector<Entity *> & objects)
     if(!objects.empty())
     {
         cut_tile(objects);
+        set_physical_body(objects);
         set_new_obj_near_to_last(objects);
     }
 
@@ -261,10 +262,9 @@ void ObjectManipulator::cut_tile(vector<Entity *> & objects)
 	WindoW *window = new WindoW(window_width,window_height,"cut tile...",gui);
 
 
-	TileCuttingWindow* cutting_menu=  new TileCuttingWindow(gui,able_to_cut);
+	TileCuttingWindow* cutting_menu=  new TileCuttingWindow(gui,able_to_cut,"cut!","cut rate:");
 	// set position, relating to object size
 	cutting_menu->set_labels_position((*last_object)->get_width()+(*last_object)->get_x());
-
 
     while(window->is_open())
     {
@@ -322,7 +322,7 @@ void ObjectManipulator::cut_tile(vector<Entity *> & objects)
         cutting_menu->update_labels_values();
 
 
-        // if used pressed button "Cut!"
+        // if user pressed button "Cut!"
         // than cut and close appeared window
         if(able_to_cut)
         {
@@ -382,3 +382,118 @@ void ObjectManipulator::set_new_obj_near_to_last(vector<Entity *> & objects)
         (*last_object)->set_id((*last_object)->get_id());
     }
 }
+void ObjectManipulator::set_physical_body(vector<Entity*>& objects)
+{
+    bool able_to_set = false;
+
+
+    auto last_object  = --objects.end();
+    (*last_object)->set_pos(0.0f,0.0f);
+
+
+	Gui *gui = new Gui;
+    TileCutter * cutter = new TileCutter((*last_object)->get_width(),(*last_object)->get_height());
+
+    // set window size, relating to object size
+    // cos object must be in the window
+	int window_width  = (*last_object)->get_width()  + 200;
+    int window_height = (*last_object)->get_height() + 200;
+	WindoW *window = new WindoW(window_width,window_height,"set physical body...",gui);
+
+
+	TileCuttingWindow* cutting_menu=  new TileCuttingWindow(gui,able_to_set,"set!","set rate:");
+	// set position, relating to object size
+	cutting_menu->set_labels_position((*last_object)->get_width()+(*last_object)->get_x());
+
+    while(window->is_open())
+    {
+        window->check_event(gui);
+
+        float speed = cutting_menu->get_cut_rate();
+
+        // Cutting
+        if(Keyboard::isKeyPressed(Keyboard::Up))
+        {
+            cutter->cut_up(speed);
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Down))
+        {
+            cutter->cut_up(-speed);
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Left))
+        {
+            cutter->cut_lefter(speed);
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Right))
+        {
+            cutter->cut_lefter(-speed);
+        }
+
+        // Moving
+        if(Keyboard::isKeyPressed(Keyboard::W))
+        {
+            cutter->move_up(speed);
+        }
+        if(Keyboard::isKeyPressed(Keyboard::S))
+        {
+            cutter->move_up(-speed);
+        }
+        if(Keyboard::isKeyPressed(Keyboard::A))
+        {
+            cutter->move_lefter(speed);
+        }
+        if(Keyboard::isKeyPressed(Keyboard::D))
+        {
+            cutter->move_lefter(-speed);
+        }
+
+        //Close window
+        if(Keyboard::isKeyPressed(Keyboard::Escape))
+        {
+            window->close();
+        }
+
+        // user changes setting area
+        // so we have to always update
+        // values of setting area sizes
+        cutting_menu->set_height(cutter->get_height());
+        cutting_menu->set_width(cutter->get_width());
+        cutting_menu->update_labels_values();
+
+
+        // if user pressed button "set!"
+        // than set and close appeared window
+        if(able_to_set)
+        {
+            // size of setting area
+            sf::Vector2f size;
+            size.x = cutter->get_width();
+            size.y = cutter->get_height();
+
+            // position of setting area
+            sf::Vector2f position = cutter->get_position();
+
+            // only this rect will be physical body
+            IntRect rect(position.x,position.y,size.x,size.y);
+            (*last_object)->set_physical_body(rect);
+
+            window->close();
+        }
+
+
+
+
+        window->clear(sf::Color(74, 72, 75));
+		gui->draw();
+        window->draw(*last_object);
+        window->draw(*cutter->get_rect());
+		window->display();
+    }
+
+    delete gui;
+    delete window;
+    delete cutting_menu;
+    delete cutter;
+
+}
+

@@ -17,6 +17,7 @@ private:
     void create(vector<Entity *> & objects);
     void cut_tile(vector<Entity *> & objects);
     void set_new_obj_near_to_last(vector<Entity *> & objects);
+    void set_physical_body(vector<Entity*>& objects);
 public:
 	void create_obj(vector<Entity *> & objects);
 	void delete_obj(vector<Entity *> & objects);
