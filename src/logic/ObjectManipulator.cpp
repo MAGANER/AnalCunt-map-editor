@@ -285,9 +285,6 @@ void ObjectManipulator::cut_tile(vector<Entity *> & objects)
         window->check_event(gui);
 
 
-
-
-
         float speed = cutting_menu->get_cut_rate();
 
         // Cutting
